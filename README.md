@@ -43,9 +43,9 @@ Explore Decks Page: Allows you to find decks created/used by other users.
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Study YouTube or Flashcard decks, while the program finds out what words you don't know as well.
+- Spaced Reptition uses the SM-2 algorithm to find out what flashcards need to be studied the most. This allows you to review the words right when you might forget them.
+- See what your friends are studying!
 
 ### Technologies
 
