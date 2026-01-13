@@ -31,16 +31,15 @@ Learning a new language can be expensive. There are so many platforms that all w
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](UI.jpeg)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Login Page: Access your account
+Friends Page: See what your friends are/were studying.
+Flashcards Page: Study a predefined deck of flashcards.
+Spaced Review Page: Study the flashcards that you don't know as well. (auto-generated)
+Youtube Page: Watch youtube videos with the captions below. You can click on captions to see a definition.
+Explore Decks Page: Allows you to find decks created/used by other users.
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
 
 ### Key features
 
