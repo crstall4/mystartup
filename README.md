@@ -44,7 +44,7 @@ I am going to use the required technologies in the following ways.
 - **CSS** - Will make the website look nice! I will also implement a card flipping animation.
 - **React** - This will manage the application state. One place I will use React is for the flashcards page. React will keep track of what flashcard I am on as I flip through all of them!
 - **Service** - Description here
-- **DB/Login** - Description here
+- **DB/Login** - I will have a Database to keep track of each users learned words, as well as each flashcard deck. There will be a login page that allows users to authenticate so that they can make changes to the database.
 - **WebSocket** - Description here
 
 ## 🚀 AWS deliverable
