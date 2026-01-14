@@ -41,7 +41,7 @@ Explore Decks Page: Allows you to find decks created/used by other users.
 I am going to use the required technologies in the following ways.
 
 - **HTML** - HTML will structure all pages of the website. I will have an HTML page for Login, Flashcards, Explore, YouTube, Friends, and Spaced Review.
-- **CSS** - Description here
+- **CSS** - Will make the website look nice! I will also implement a card flipping animation.
 - **React** - Description here
 - **Service** - Description here
 - **DB/Login** - Description here
