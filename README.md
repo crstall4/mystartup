@@ -10,9 +10,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
-- [ ] Description of key features
+- [X] Description of key features
 - [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -40,7 +40,7 @@ Explore Decks Page: Allows you to find decks created/used by other users.
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
+- **HTML** - HTML will structure all pages of the website. I will have an HTML page for Login, Flashcards, Explore, YouTube, Friends, and Spaced Review.
 - **CSS** - Description here
 - **React** - Description here
 - **Service** - Description here
