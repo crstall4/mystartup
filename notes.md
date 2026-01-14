@@ -10,8 +10,8 @@
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 98.86.101.99
+I accidentally created my AWS server not according to canvas, so I had to do it over again. When buying my DNS name, instead of doing it through amazon, I decided to just use the one I already bought through cloudflare. the DNS is claytonstallings.com. I set up that domain according to the canvas instructions and got it working properly.
 
 ## Caddy
 
