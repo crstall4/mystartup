@@ -45,7 +45,7 @@ I am going to use the required technologies in the following ways.
 - **React** - This will manage the application state. One place I will use React is for the flashcards page. React will keep track of what flashcard I am on as I flip through all of them!
 - **Service** - Description here
 - **DB/Login** - I will have a Database to keep track of each users learned words, as well as each flashcard deck. There will be a login page that allows users to authenticate so that they can make changes to the database.
-- **WebSocket** - Description here
+- **WebSocket** - I will use WebSockets on the Friend page. I will set it up so that the user will see real time updates on what their friends are studying.
 
 ## 🚀 AWS deliverable
 
