@@ -42,7 +42,7 @@ I am going to use the required technologies in the following ways.
 
 - **HTML** - HTML will structure all pages of the website. I will have an HTML page for Login, Flashcards, Explore, YouTube, Friends, and Spaced Review.
 - **CSS** - Will make the website look nice! I will also implement a card flipping animation.
-- **React** - Description here
+- **React** - This will manage the application state. One place I will use React is for the flashcards page. React will keep track of what flashcard I am on as I flip through all of them!
 - **Service** - Description here
 - **DB/Login** - Description here
 - **WebSocket** - Description here
