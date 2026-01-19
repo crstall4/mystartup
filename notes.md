@@ -35,6 +35,10 @@ This part was also very easy. I just looked at the format of the codepen and was
 This part was also very easy. Just followed the format
 [Here is the CodePen I created](https://codepen.io/clayton-the-reactor/pen/YPWVZOK)
 
+Another note for later, this is how i deployed the code to my awsbox: ./deployFiles.sh -k /home/clayton/Documents/startup.pem -h 98.86.101.99 -s startup
+
+I used the IP because I registered my domain via cloudflare, and cloudflare is proxying my domain. Because of that, the script doesnt work when i type my domain in that spot. However, using the IP instead causes no problems.
+
 ## CSS
 
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
