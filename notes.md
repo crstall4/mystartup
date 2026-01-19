@@ -21,6 +21,7 @@ No problems worked just like it said in the [instruction](https://github.com/web
 
 This part was very easy. I have had experience working with HTML before, so the only thing I had to do was review some simple syntax. 
 I reviewed how to use anchor tags, and the attributes of img tags.
+[Here is the CodePen I created](https://codepen.io/clayton-the-reactor/pen/ByzRWLN)
 
 ## CSS
 
