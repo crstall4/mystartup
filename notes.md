@@ -19,9 +19,16 @@ No problems worked just like it said in the [instruction](https://github.com/web
 
 ## HTML
 
+##### Structure
+
 This part was very easy. I have had experience working with HTML before, so the only thing I had to do was review some simple syntax. 
 I reviewed how to use anchor tags, and the attributes of img tags.
 [Here is the CodePen I created](https://codepen.io/clayton-the-reactor/pen/ByzRWLN)
+
+##### Input
+
+This part was also very easy. I just looked at the format of the codepen and was able to figure everything out. The only thing I had to search up, was setting a default color in the color picker. It ended up being an attribute named "value" that needed to be added.
+[Here is the CodePen I created](https://codepen.io/clayton-the-reactor/pen/EaymWbp)
 
 ## CSS
 
