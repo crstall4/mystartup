@@ -30,6 +30,11 @@ I reviewed how to use anchor tags, and the attributes of img tags.
 This part was also very easy. I just looked at the format of the codepen and was able to figure everything out. The only thing I had to search up, was setting a default color in the color picker. It ended up being an attribute named "value" that needed to be added.
 [Here is the CodePen I created](https://codepen.io/clayton-the-reactor/pen/EaymWbp)
 
+##### Media
+
+This part was also very easy. Just followed the format
+[Here is the CodePen I created](https://codepen.io/clayton-the-reactor/pen/YPWVZOK)
+
 ## CSS
 
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
