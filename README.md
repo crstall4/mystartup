@@ -60,16 +60,17 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - created 4 html pages. index.html, friends.html, browse.html, and study.html.
+- [x] **Proper HTML element usage** - I spent a lot of time learning about HTML. I used header, footer, main, nav, a, button, form, and more.
+- [x] **Links** - The header contains links to all pages.
+- [x] **Text** - All pages have text
+- [x] **3rd party API placeholder** - The study.html page contains a time at the botton. I will query a 3rd party API that gets EXACT time.
+- [x] **Images** - LangLearn photo is beneath the log on. this is at index.html.
+- [x] **Login placeholder** - located at index.html
+- [x] **DB data placeholder** - DB will store the card deck information. Card data is the db data. See the place holder at study.html.
+- [x] **WebSocket placeholder** - The friends.html page contains friend info. This will be updated live with what the friends are currently studying, or when they were last online. This currently has websocket placeholder info in it.
 
+<!-- 
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -122,4 +123,4 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [ ] **Application is fully functional** - I did not complete this part of the deliverable. -->
