@@ -44,6 +44,9 @@ I used the IP because I registered my domain via cloudflare, and cloudflare is p
 I was following the CSS tutorial in canvas and made this code pen. I believe when it comes to CSS, simpler is better. 
 https://codepen.io/clayton-the-reactor/pen/WbxKGyG
 
+I was following another CSS tutorial and created this code pen. This focuses on using flex display in CSS.
+https://codepen.io/clayton-the-reactor/pen/vEKaXQo
+
 
 
 
