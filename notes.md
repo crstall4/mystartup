@@ -41,6 +41,12 @@ I used the IP because I registered my domain via cloudflare, and cloudflare is p
 
 ## CSS
 
+I was following the CSS tutorial in canvas and made this code pen. I believe when it comes to CSS, simpler is better. 
+https://codepen.io/clayton-the-reactor/pen/WbxKGyG
+
+
+
+
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
 
 Bootstrap seems a bit like magic. It styles things nicely, but is very opinionated. You either do, or you do not. There doesn't seem to be much in between.
