@@ -5,34 +5,32 @@ body {
   flex-direction: column;
   min-width: 375px;
   font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  overflow: hidden;
 }
 
 header {
   font-family: 'Roboto', sans-serif;
-}
-
-header {
-  flex: 0 80px;
+  flex: 0 0 80px;
 }
 
 main {
-  flex: 1 calc(100vh - 110px);
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   font-family: 'Roboto', sans-serif;
-
+  overflow: hidden;
 }
 
 footer {
-  flex: 0 30px;
+  flex: 0 0 30px;
 }
 
 menu {
   flex: 1;
   display: flex;
-  /*  overwrite Bootstrap so the menu does not wrap */
   flex-direction: row !important;
   list-style: none;
 }

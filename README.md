@@ -70,18 +70,18 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **DB data placeholder** - DB will store the card deck information. Card data is the db data. See the place holder at study.html.
 - [x] **WebSocket placeholder** - The friends.html page contains friend info. This will be updated live with what the friends are currently studying, or when they were last online. This currently has websocket placeholder info in it.
 
-<!-- 
+
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - Simple colors and simple layout. Nothing overflows.
+- [x] **Use of a CSS framework** - I used CSS on all my webpages!
+- [x] **All visual elements styled using CSS** - Everything is styled with CSS! That means all the backgrounds and navbar. The text also is centered and styled using CSS.
+- [x] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
 - [ ] **Use of a imported font** - I did not complete this part of the deliverable.
 - [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
-
+<!-- 
 ## 🚀 React part 1: Routing deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
