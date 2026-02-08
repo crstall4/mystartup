@@ -48,6 +48,7 @@ I was following another CSS tutorial and created this code pen. This focuses on 
 https://codepen.io/clayton-the-reactor/pen/vEKaXQo
 
 
+Making the CS for my website was pretty straight forward. I used a lot of the format that simon used. I like the simple bootstrap styling. I think often times with websites, simpler is better. Kinda like qqtimer, my favorite rubiks cube timer. they dont overwhelm you. its all very simple and organized.
 
 
 ## React Part 1: Routing
