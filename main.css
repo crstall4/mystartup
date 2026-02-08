@@ -48,6 +48,14 @@ footer a {
   float: right;
 }
 
+a:hover {
+  opacity: 0.8;
+}
+
+#logo {
+  margin-top: 20px;
+}
+
 @media (max-height: 600px) {
   header {
     display: none;

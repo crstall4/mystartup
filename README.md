@@ -78,9 +78,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Visually appealing colors and layout. No overflowing elements.** - Simple colors and simple layout. Nothing overflows.
 - [x] **Use of a CSS framework** - I used CSS on all my webpages!
 - [x] **All visual elements styled using CSS** - Everything is styled with CSS! That means all the backgrounds and navbar. The text also is centered and styled using CSS.
-- [x] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Responsive to window resizing using flexbox and/or grid display** - The 'main' and 'footer' part of my code has flexbox being used
+- [x] **Use of a imported font** - using roboto. Can be seen in my CSS!
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I am using all those forms of selectors in my main.css file!
 <!-- 
 ## 🚀 React part 1: Routing deliverable
 
