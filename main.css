@@ -12,6 +12,7 @@ body {
 header {
   font-family: 'Roboto', sans-serif;
   flex: 0 0 80px;
+  
 }
 
 main {
@@ -33,15 +34,26 @@ menu {
   display: flex;
   flex-direction: row !important;
   list-style: none;
+  justify-content: center;
+}
+
+title {
+  justify-content: center;
+}
+
+.navbar {
+  flex-direction: column !important;
+  align-items: center;
 }
 
 .navbar-brand {
-  padding-left: 0.3em;
   border-bottom: solid rgb(182, 182, 182) thin;
+  justify-content: center;
 }
 
 menu .nav-item {
   padding: 0 0.3em;
+  
 }
 
 footer a {
