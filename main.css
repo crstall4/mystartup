@@ -105,7 +105,29 @@ a:hover {
   text-decoration: none;
 }
 
+.study-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  text-align: center;
+}
 
+.study-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  padding: 20px; 
+}
+
+.study-buttons button {
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.study-buttons button:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
 
 @media (max-height: 600px) {
   header {
