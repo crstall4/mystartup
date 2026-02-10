@@ -68,6 +68,25 @@ a:hover {
   margin-top: 20px;
 }
 
+.friends {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.friends .player-name {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.friends .player-name:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 @media (max-height: 600px) {
   header {
     display: none;
