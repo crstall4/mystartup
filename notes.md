@@ -53,7 +53,17 @@ Making the CS for my website was pretty straight forward. I used a lot of the fo
 
 ## React Part 1: Routing
 
-Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.
+As I did this, canvas walked me through a simple node/npm tutorial. These are the fundamentals of using npm that canvas wanted me to remember:
+
+1. Create your project directory
+2. Initialize it for use with NPM by running npm init -y
+3. Make sure .gitignore file contains node_modules
+4. Install any desired packages with npm install <package name here>
+5. Add require('<package name here>') to your application's JavaScript
+6. Use the code the package provides in your JavaScript
+7. Run your code with node index.js
+
+
 
 ## React Part 2: Reactivity
 
