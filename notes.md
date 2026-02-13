@@ -63,6 +63,12 @@ As I did this, canvas walked me through a simple node/npm tutorial. These are th
 6. Use the code the package provides in your JavaScript
 7. Run your code with node index.js
 
+I also ran through a canvas react demo. This is how to get react up and running:
+`npm init -y`
+`npm install vite@latest -D`
+`npm install react react-dom`
+*create index.html and index.jsx files*
+`npx vite` to run the server
 
 
 ## React Part 2: Reactivity
