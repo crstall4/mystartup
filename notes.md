@@ -76,6 +76,17 @@ https://codepen.io/clayton-the-reactor/pen/RNRvObW
 Followed React Routing tutorial and made this codepen:
 https://codepen.io/clayton-the-reactor/pen/yyJwjPE
 
+How to port things to react:
+1. Install and configure Vite
+2. Reorganize the code
+3. Convert to React Bootstrap
+4. Enable React
+5. Create app component
+6. Create view components
+7. Create the router
+8. Convert HTML to React components
+9. Replace deployment script
+
 ## React Part 2: Reactivity
 
 This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.

@@ -81,16 +81,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Responsive to window resizing using flexbox and/or grid display** - The 'main' and 'footer' part of my code has flexbox being used
 - [x] **Use of a imported font** - using roboto. Can be seen in my CSS!
 - [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I am using all those forms of selectors in my main.css file!
-<!-- 
+
 ## 🚀 React part 1: Routing deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - Vite builds the app for development and production (npm run dev, and npm run build)
+- [x] **Components** -  I split each page into its own React component (Login, Friends, Browse, Study)
+- [x] **Router** - I used React Router to navigate between pages without full reloads.
 
-## 🚀 React part 2: Reactivity deliverable
+<!-- ## 🚀 React part 2: Reactivity deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
