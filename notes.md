@@ -70,9 +70,11 @@ I also ran through a canvas react demo. This is how to get react up and running:
 *create index.html and index.jsx files*
 `npx vite` to run the server
 
-Followed React tutorial and made this codepen:
+Followed React Component tutorial and made this codepen:
 https://codepen.io/clayton-the-reactor/pen/RNRvObW
 
+Followed React Routing tutorial and made this codepen:
+https://codepen.io/clayton-the-reactor/pen/yyJwjPE
 
 ## React Part 2: Reactivity
 
