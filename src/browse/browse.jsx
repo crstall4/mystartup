@@ -1,3 +1,7 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import '../app.css';
+
 export function Browse() {
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
