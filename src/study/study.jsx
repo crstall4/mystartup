@@ -3,10 +3,11 @@ import '../app.css';
 
 export function Study() {
 
-  const [count, setCount] = React.useState(0);
+  const [count, setCount] = React.useState(parseInt(localStorage.getItem('count')) || 0);
 
   function countClick() {
     setCount(count+1);
+    localStorage.setItem('count',count+1);
   }
 
   return (
