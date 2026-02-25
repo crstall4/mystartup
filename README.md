@@ -90,14 +90,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Components** -  I split each page into its own React component (Login, Friends, Browse, Study)
 - [x] **Router** - I used React Router to navigate between pages without full reloads.
 
-<!-- ## 🚀 React part 2: Reactivity deliverable
+## 🚀 React part 2: Reactivity deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
-
-## 🚀 Service deliverable
+- [ ] **All functionality implemented or mocked out** - 
+- [ ] **Hooks** - 
+<!-- ## 🚀 Service deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
