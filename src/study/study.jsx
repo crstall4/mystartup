@@ -2,6 +2,13 @@ import React from 'react';
 import '../app.css';
 
 export function Study() {
+
+  const [count, setCount] = React.useState(0);
+
+  function countClick() {
+    setCount(count+1);
+  }
+
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
         <div className="study-card">
@@ -26,6 +33,11 @@ export function Study() {
 
         <div>
             <p>Current time: 1:52pm</p>
+        </div>
+
+        <div>
+          <button onClick={ countClick }>Click</button>
+          <div>{count}</div>
         </div>
       
     </main>
