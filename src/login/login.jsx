@@ -1,14 +1,16 @@
 import React from 'react';
 import '../app.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export function Login({setUser}) {
   const [text, setText] = React.useState(localStorage.getItem('login') || '');
+  const navigate = useNavigate();
 
   function loginUser(){
     console.log('login: ' + text);
     localStorage.setItem('user', text);
     setUser(text);
+    navigate('/study');
   }
 
   function textChange(e){
