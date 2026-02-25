@@ -8,6 +8,10 @@ import { Friends } from './friends/friends';
 import { Browse } from './browse/browse';
 
 export default function App() {
+  const [user, setUser] = React.useState(localStorage.getItem('user') || null);
+
+  
+
   return (
   <BrowserRouter>
   <div class="body">
@@ -17,18 +21,18 @@ export default function App() {
         <menu class="navbar-nav">
           <h1 class="navbar-brand">LangLearn</h1>
           <li class="nav-item"><NavLink className='nav-link' to=''>Login</NavLink></li>
-          <li class="nav-item"><NavLink className='nav-link' to='friends'>Friends</NavLink></li>
-          <li class="nav-item"><NavLink className='nav-link' to='browse'>Browse Decks</NavLink></li>
-          <li class="nav-item"><NavLink className='nav-link' to='study'>Study</NavLink></li>
+          {user && (<li class="nav-item"><NavLink className='nav-link' to='friends'>Friends</NavLink></li>)}
+          {user && (<li class="nav-item"><NavLink className='nav-link' to='browse'>Browse Decks</NavLink></li>)}
+          {user && (<li class="nav-item"><NavLink className='nav-link' to='study'>Study</NavLink></li>)}
         </menu>
       </nav>
     </header>
 
     <Routes>
-      <Route path='/' element={<Login />} exact />
-      <Route path='/study' element={<Study />} />
-      <Route path='/friends' element={<Friends />} />
-      <Route path='/browse' element={<Browse />} />
+      <Route path='/' element={<Login setUser={setUser} />} exact />
+      <Route path='/study' element={<Study user={user} />} />
+      <Route path='/friends' element={<Friends user={user} />} />
+      <Route path='/browse' element={<Browse user={user} />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
 

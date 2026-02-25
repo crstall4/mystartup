@@ -1,7 +1,7 @@
 import React from 'react';
 import '../app.css';
 
-export function Friends() {
+export function Friends({user}) {
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
         {/* Webhook placeholder!!!! */}

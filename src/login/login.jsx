@@ -2,9 +2,29 @@ import React from 'react';
 import '../app.css';
 import { NavLink } from 'react-router-dom';
 
-export function Login() {
+export function Login({setUser}) {
+  const [text, setText] = React.useState(localStorage.getItem('login') || '');
+
+  function loginUser(){
+    console.log('login: ' + text);
+    localStorage.setItem('user', text);
+    setUser(text);
+  }
+
+  function textChange(e){
+    setText(e.target.value);
+
+  }
+
   return (
     <main className="container-fluid bg-light text-dark d-flex flex-column justify-content-center">
+      <div>
+        <h1>Login Test</h1>
+        <input type='text' onChange={textChange}/>
+        <button onClick={loginUser}>Login</button>
+        {/* <div>{text}</div> */}
+      </div>
+      
       <div>
       <h1>Welcome to LangLearn</h1>
       <form>
