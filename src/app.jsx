@@ -6,6 +6,7 @@ import { Login } from './login/login';
 import { Study } from './study/study';
 import { Friends } from './friends/friends';
 import { Browse } from './browse/browse';
+import { Stats } from './stats/stats';
 
 export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
@@ -58,6 +59,8 @@ export default function App() {
           {username && (<li className="nav-item"><NavLink className='nav-link' to='friends'>Friends</NavLink></li>)}
           {username && (<li className="nav-item"><NavLink className='nav-link' to='browse'>Browse Decks</NavLink></li>)}
           {username && (<li className="nav-item"><NavLink className='nav-link' to='study'>Study</NavLink></li>)}
+          {username && (<li className="nav-item"><NavLink className='nav-link' to='stats'>Stats</NavLink></li>)}
+
         </menu>   
       </nav>
     </header>
@@ -66,6 +69,7 @@ export default function App() {
       <Route path='/study' element={<Study user={username} password={password} score={score} setScore={handleSetScore} />} />
       <Route path='/friends' element={<Friends user={username} password={password} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
       <Route path='/browse' element={<Browse user={username} password={password} />} />
+      <Route path='/stats' element={<Stats user={username} password={password} score={score}/>} />
       <Route path='*' element={<NotFound />} />
     </Routes>
 
