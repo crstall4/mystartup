@@ -10,7 +10,7 @@ import { Browse } from './browse/browse';
 export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
   const [password, setPassword] = React.useState(localStorage.getItem('password') || '');
-  const [score, setScore] = React.useState(localStorage.getItem('score') || '[]');
+  const [score, setScore] = React.useState(JSON.parse(localStorage.getItem('score') || '[]'));
 
   function handleSetUsername(value) {
     setUsername(value);
@@ -23,7 +23,7 @@ export default function App() {
   }
 
   function handleSetScore(newEntry) {
-    let scoreList = JSON.parse(score);
+    let scoreList = [...score];
     scoreList.push(newEntry);
     setScore(scoreList);
     localStorage.setItem('score', JSON.stringify(scoreList));
