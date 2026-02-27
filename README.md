@@ -94,7 +94,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - 
+- [x] **All functionality implemented or mocked out** - Created the login feature. Currently the login info is stored in local storage. Once I get the DB running, a register button will create a user if it doesnt exist with associated password. Login will only work if password is correct. Currently, the local storage just stores whatever user typed in, and it always works. Will add actual authentication on database stage.
 - [ ] **Hooks** - 
 <!-- ## 🚀 Service deliverable
 
