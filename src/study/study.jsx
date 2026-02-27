@@ -3,14 +3,8 @@ import '../app.css';
 
 export function Study({user, password, score, setScore}) {
 
-  const [count, setCount] = React.useState(parseInt(localStorage.getItem('count')) || 0);
   const [isFlipped, setIsFlipped] = React.useState(false);
   const [card, setCard] = React.useState({question: "苹果", answer: "apple"});
-
-  function countClick() {
-    setCount(count+1);
-    localStorage.setItem('count',count+1);
-  }
 
   function flipCard() {
     setIsFlipped(!isFlipped);
@@ -46,11 +40,6 @@ export function Study({user, password, score, setScore}) {
 
         <div>
             <p style={{ marginTop: '20px' }}>Current time: 1:52pm</p>
-        </div>
-
-        <div>
-          <button onClick={ countClick }>Click</button>
-          <div>{count}</div>
         </div>
       
     </main>
