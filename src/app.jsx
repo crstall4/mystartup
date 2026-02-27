@@ -11,6 +11,7 @@ export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
   const [password, setPassword] = React.useState(localStorage.getItem('password') || '');
   const [score, setScore] = React.useState(JSON.parse(localStorage.getItem('score') || '[]'));
+  const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '["Andrew", "Michael", "Carter", "Jeffery", "Jacob", "Clayton"]'));
 
   function handleSetUsername(value) {
     setUsername(value);
@@ -29,6 +30,12 @@ export default function App() {
     localStorage.setItem('score', JSON.stringify(scoreList));
   }
   
+  function handleSetFriends(friend) {
+    let friendsList = [...friends];
+    friendsList.push(friend);
+    setFriends(friendsList);
+    localStorage.setItem('friends', JSON.stringify(friendsList));
+  }
 
   return (
   <BrowserRouter>
@@ -49,7 +56,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<Login setUsername={handleSetUsername} setPassword={handleSetPassword} username={username} password={password}/>} exact />
       <Route path='/study' element={<Study user={username} password={password} score={score} setScore={handleSetScore} />} />
-      <Route path='/friends' element={<Friends user={username} password={password} />} />
+      <Route path='/friends' element={<Friends user={username} password={password} friends={friends}/>} />
       <Route path='/browse' element={<Browse user={username} password={password} />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
