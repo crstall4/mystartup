@@ -10,6 +10,7 @@ import { Browse } from './browse/browse';
 export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
   const [password, setPassword] = React.useState(localStorage.getItem('password') || '');
+  const [score, setScore] = React.useState(localStorage.getItem('score') || '[]');
 
   function handleSetUsername(value) {
     setUsername(value);
@@ -19,6 +20,13 @@ export default function App() {
   function handleSetPassword(value) {
     setPassword(value);
     localStorage.setItem('password', value);
+  }
+
+  function handleSetScore(newEntry) {
+    let scoreList = JSON.parse(score);
+    scoreList.push(newEntry);
+    setScore(scoreList);
+    localStorage.setItem('score', JSON.stringify(scoreList));
   }
   
 
@@ -40,7 +48,7 @@ export default function App() {
     </header>
     <Routes>
       <Route path='/' element={<Login setUsername={handleSetUsername} setPassword={handleSetPassword} username={username} password={password}/>} exact />
-      <Route path='/study' element={<Study user={username} password={password} />} />
+      <Route path='/study' element={<Study user={username} password={password} score={score} setScore={handleSetScore} />} />
       <Route path='/friends' element={<Friends user={username} password={password} />} />
       <Route path='/browse' element={<Browse user={username} password={password} />} />
       <Route path='*' element={<NotFound />} />
