@@ -1,9 +1,10 @@
 import React from 'react';
 import '../app.css';
 
-export function Friends({user, password, friends}) {
+export function Friends({user, password, friends, addFriend, removeFriend}) {
   const statusesOptions = ["Offline", "On Friends Page", "On Login Page", "On Study Page", "On Browse Page"];
   const [statuses, setStatuses] = React.useState({});
+  const [friendName, setFriendName] = React.useState('');
 
   React.useEffect(() => {
     const initialStatuses = {};
@@ -37,6 +38,17 @@ export function Friends({user, password, friends}) {
             <li key={index} className="player-name">{friend}: {statuses[friend] || "offline"}</li>
           ))}
         </ul>
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter friend name"
+          value={friendName}
+          onChange={(e) => setFriendName(e.target.value)}
+        />
+        <br />
+        <button onClick={() => addFriend(friendName)}>Add</button>
+        <button onClick={() => removeFriend(friendName)}>Remove</button>
       </div>
     </main>
   );

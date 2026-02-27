@@ -29,10 +29,18 @@ export default function App() {
     setScore(scoreList);
     localStorage.setItem('score', JSON.stringify(scoreList));
   }
-  
-  function handleSetFriends(friend) {
+  function handleAddFriend(friend) {
     let friendsList = [...friends];
-    friendsList.push(friend);
+    if (!friendsList.includes(friend)) {
+      friendsList.push(friend);
+      setFriends(friendsList);
+      localStorage.setItem('friends', JSON.stringify(friendsList));
+    }
+  }
+
+  function handleRemoveFriend(friend) {
+    let friendsList = [...friends];
+    friendsList = friendsList.filter(f => f !== friend);
     setFriends(friendsList);
     localStorage.setItem('friends', JSON.stringify(friendsList));
   }
@@ -56,7 +64,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<Login setUsername={handleSetUsername} setPassword={handleSetPassword} username={username} password={password}/>} exact />
       <Route path='/study' element={<Study user={username} password={password} score={score} setScore={handleSetScore} />} />
-      <Route path='/friends' element={<Friends user={username} password={password} friends={friends}/>} />
+      <Route path='/friends' element={<Friends user={username} password={password} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
       <Route path='/browse' element={<Browse user={username} password={password} />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
