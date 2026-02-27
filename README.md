@@ -20,7 +20,7 @@ Learning a new language can be expensive. There are so many platforms that all w
 
 ### Design
 
-![Design image](UI.jpeg)
+![Design image](public/UI.jpeg)
 
 Login Page: Access your account
 Friends Page: See what your friends are/were studying.
@@ -96,7 +96,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **All functionality implemented or mocked out** - Created the login feature. Currently the login info is stored in local storage. Once I get the DB running, a register button will create a user if it doesnt exist with associated password. Login will only work if password is correct. Currently, the local storage just stores whatever user typed in, and it always works. Will add actual authentication on database stage. 
 I also got the score local storage working so that it will be easily incorporated with a database.
-![scoring format](score.png)
+![scoring format](public/score.png)
 
 - [ ] **Hooks** - 
 <!-- ## 🚀 Service deliverable
