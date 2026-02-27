@@ -9,7 +9,7 @@ import { Browse } from './browse/browse';
 
 export default function App() {
   const [user, setUser] = React.useState(localStorage.getItem('user') || null);
-
+  const [password, setPassword] = React.useState(localStorage.getItem('password') || null);
   
 
   return (
@@ -17,7 +17,7 @@ export default function App() {
   <div class="body">
     <header class="container-fluid">
       <nav class="navbar fixed-top navbar-dark">
-      
+        <div>hi</div>
         <menu class="navbar-nav">
           <h1 class="navbar-brand">LangLearn</h1>
           <li class="nav-item"><NavLink className='nav-link' to=''>Login</NavLink></li>
@@ -29,10 +29,10 @@ export default function App() {
     </header>
 
     <Routes>
-      <Route path='/' element={<Login setUser={setUser} />} exact />
-      <Route path='/study' element={<Study user={user} />} />
-      <Route path='/friends' element={<Friends user={user} />} />
-      <Route path='/browse' element={<Browse user={user} />} />
+      <Route path='/' element={<Login setUser={setUser} setPass={setPassword} user={user} password={password}/>} exact />
+      <Route path='/study' element={<Study user={user} password={password} />} />
+      <Route path='/friends' element={<Friends user={user} password={password} />} />
+      <Route path='/browse' element={<Browse user={user} password={password} />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
 

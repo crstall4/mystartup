@@ -1,7 +1,7 @@
 import React from 'react';
 import '../app.css';
 
-export function Friends({user}) {
+export function Friends({user, password}) {
   const [msg, setMsg] = React.useState('...listening');
 
   React.useEffect(() => {

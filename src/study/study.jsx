@@ -1,7 +1,7 @@
 import React from 'react';
 import '../app.css';
 
-export function Study({user}) {
+export function Study({user, password}) {
 
   const [count, setCount] = React.useState(parseInt(localStorage.getItem('count')) || 0);
 
