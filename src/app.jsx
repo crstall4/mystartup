@@ -30,7 +30,6 @@ export default function App() {
       <nav className="navbar fixed-top navbar-dark">
         
         <menu className="navbar-nav">
-          {username && <div className="align-self-start">Welcome: {username}</div>}
           <h1 className="navbar-brand">LangLearn</h1>
           <li className="nav-item"><NavLink className='nav-link' to=''>Login</NavLink></li>
           {username && (<li className="nav-item"><NavLink className='nav-link' to='friends'>Friends</NavLink></li>)}
