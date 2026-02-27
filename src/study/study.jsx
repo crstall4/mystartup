@@ -18,16 +18,13 @@ export function Study({user, password}) {
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
         <div className="study-card">
-            <svg width="150" height="100" viewBox="0 0 300 200" style={{border: "1px solid #000"}}>
-                <text x="150" y="100" fontSize="30" textAnchor="middle" dominantBaseline="middle">
-                  {isFlipped ? "ANSWER" : "QUESTION"}
-                </text>
-            </svg>
+          {isFlipped ? "ANSWER" : "QUESTION"}
         </div>
         <button className="deck" onClick={flipCard}>FLIP</button>
+        
         <div
           className="study-buttons"
-          style={{ border: "1px solid #000", padding: "10px", display: "inline-block" }}
+          style={{ border: "1px solid #000", padding: "10px", display: "inline-block", visibility: isFlipped ? 'visible' : 'hidden'}}
         >
             <p>How well did you know this card?</p>
             <div>
@@ -40,7 +37,7 @@ export function Study({user, password}) {
         </div>
 
         <div>
-            <p>Current time: 1:52pm</p>
+            <p style={{ marginTop: '20px' }}>Current time: 1:52pm</p>
         </div>
 
         <div>
