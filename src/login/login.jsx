@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../app.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-export function Login({setUser, setPassword, user, password}) {
+export function Login({setUsername, setPassword, username, password}) {
   const navigate = useNavigate();
+  const [localUsername, setLocalUsername] = useState(username || '');
+  const [localPassword, setLocalPassword] = useState(password || '');
 
-  function loginUser(){
-    localStorage.setItem('user', user);
-    localStorage.setItem('password', password);
-    setUser(user);
-    setPassword(password);
+  function loginUser(e) {
+    e.preventDefault();
+    setUsername(localUsername);
+    setPassword(localPassword);
     navigate('/study');
   }
 
@@ -20,15 +21,15 @@ export function Login({setUser, setPassword, user, password}) {
       <form>
         <div className="input-group mb-3">
           <span className="input-group-text">Username: </span>
-          <input type="text" className="form-control" placeholder="your@email.com" value={user} />
+          <input type="text" className="form-control" placeholder="your@email.com" value={localUsername} onChange={(e) => setLocalUsername(e.target.value)} />
         </div>
         <div className="input-group mb-3">
           <span className="input-group-text">Password: </span>
-          <input type="password" className="form-control" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" className="form-control" placeholder="password" value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} />
         </div>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-            <button onClick={loginUser} className="btn btn-primary">Login</button>
-            <button onClick={loginUser} className="btn btn-secondary">Create</button>
+          <button type="submit" onClick={loginUser} className="btn btn-primary">Login</button>
+          <button type="button" onClick={loginUser} className="btn btn-secondary">Create</button>
         </div>
       </form>
       </div>

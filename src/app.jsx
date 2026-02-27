@@ -8,37 +8,47 @@ import { Friends } from './friends/friends';
 import { Browse } from './browse/browse';
 
 export default function App() {
-  const [user, setUser] = React.useState(localStorage.getItem('user') || null);
-  const [password, setPassword] = React.useState(localStorage.getItem('password') || null);
+  const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
+  const [password, setPassword] = React.useState(localStorage.getItem('password') || '');
+
+  function handleSetUsername(value) {
+    setUsername(value);
+    localStorage.setItem('user', value);
+  }
+
+  function handleSetPassword(value) {
+    setPassword(value);
+    localStorage.setItem('password', value);
+  }
   
 
   return (
   <BrowserRouter>
-  <div class="body">
-    <header class="container-fluid">
-      <nav class="navbar fixed-top navbar-dark">
-        <div>hi</div>
-        <menu class="navbar-nav">
-          <h1 class="navbar-brand">LangLearn</h1>
-          <li class="nav-item"><NavLink className='nav-link' to=''>Login</NavLink></li>
-          {user && (<li class="nav-item"><NavLink className='nav-link' to='friends'>Friends</NavLink></li>)}
-          {user && (<li class="nav-item"><NavLink className='nav-link' to='browse'>Browse Decks</NavLink></li>)}
-          {user && (<li class="nav-item"><NavLink className='nav-link' to='study'>Study</NavLink></li>)}
-        </menu>
+  <div className="body">
+    <header className="container-fluid">
+      {username && <div className="p-3 align-self-start">Welcome: {username}</div>}
+      <nav className="navbar fixed-top navbar-dark">
+        
+        <menu className="navbar-nav">
+          <h1 className="navbar-brand">LangLearn</h1>
+          <li className="nav-item"><NavLink className='nav-link' to=''>Login</NavLink></li>
+          {username && (<li className="nav-item"><NavLink className='nav-link' to='friends'>Friends</NavLink></li>)}
+          {username && (<li className="nav-item"><NavLink className='nav-link' to='browse'>Browse Decks</NavLink></li>)}
+          {username && (<li className="nav-item"><NavLink className='nav-link' to='study'>Study</NavLink></li>)}
+        </menu>   
       </nav>
     </header>
-
     <Routes>
-      <Route path='/' element={<Login setUser={setUser} setPass={setPassword} user={user} password={password}/>} exact />
-      <Route path='/study' element={<Study user={user} password={password} />} />
-      <Route path='/friends' element={<Friends user={user} password={password} />} />
-      <Route path='/browse' element={<Browse user={user} password={password} />} />
+      <Route path='/' element={<Login setUsername={handleSetUsername} setPassword={handleSetPassword} username={username} password={password}/>} exact />
+      <Route path='/study' element={<Study user={username} password={password} />} />
+      <Route path='/friends' element={<Friends user={username} password={password} />} />
+      <Route path='/browse' element={<Browse user={username} password={password} />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
 
-    <footer class="d-flex justify-content-between align-items-center p-3">
-      <span class="text-reset">Clayton Stallings</span>
-      <a href="https://github.com/crstall4/mystartup" class="nav-link">GitHub</a>
+    <footer className="d-flex justify-content-between align-items-center p-3">
+      <span className="text-reset">Clayton Stallings</span>
+      <a href="https://github.com/crstall4/mystartup" className="nav-link">GitHub</a>
     </footer>
   </div>
   </BrowserRouter>
