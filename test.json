@@ -1,0 +1,7 @@
+{
+  "name": "Spanish Basics",
+  "cards": [
+    { "question": "hola", "answer": "hello" },
+    { "question": "gracias", "answer": "thank you" }
+  ]
+}

@@ -13,6 +13,7 @@ export default function App() {
   const [password, setPassword] = React.useState(localStorage.getItem('password') || '');
   const [score, setScore] = React.useState(JSON.parse(localStorage.getItem('score') || '[]'));
   const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '["Andrew", "Michael", "Carter", "Jeffery", "Jacob", "Clayton"]'));
+  const [decks, setDecks] = React.useState(JSON.parse(localStorage.getItem('decks') || '[]'));
 
   function handleSetUsername(value) {
     setUsername(value);
@@ -68,7 +69,7 @@ export default function App() {
       <Route path='/' element={<Login setUsername={handleSetUsername} setPassword={handleSetPassword} username={username} password={password}/>} exact />
       <Route path='/study' element={<Study user={username} password={password} score={score} setScore={handleSetScore} />} />
       <Route path='/friends' element={<Friends user={username} password={password} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
-      <Route path='/browse' element={<Browse user={username} password={password} />} />
+      <Route path='/browse' element={<Browse user={username} password={password} decks={decks} setDecks={setDecks} />} />
       <Route path='/stats' element={<Stats user={username} password={password} score={score}/>} />
       <Route path='*' element={<NotFound />} />
     </Routes>
