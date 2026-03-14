@@ -89,3 +89,6 @@ How to port things to react:
 
 ## React Part 2: Reactivity
 
+## Service
+
+Learned about the fetch command and made this code-pen

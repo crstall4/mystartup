@@ -21,7 +21,7 @@ export function Login({setUsername, setPassword, username, password}) {
       <form>
         <div className="input-group mb-3">
           <span className="input-group-text">Username: </span>
-          <input type="text" className="form-control" placeholder="your@email.com" value={localUsername} onChange={(e) => setLocalUsername(e.target.value)} />
+          <input type="text" className="form-control" placeholder="username" value={localUsername} onChange={(e) => setLocalUsername(e.target.value)} />
         </div>
         <div className="input-group mb-3">
           <span className="input-group-text">Password: </span>

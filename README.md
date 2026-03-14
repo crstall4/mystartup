@@ -99,7 +99,7 @@ I also got the score local storage working so that it will be easily incorporate
 ![scoring format](public/score.png)
 I also set the friends to be in local storage. This is because each user might have a different number of friends. As a result, the React page needs to be able to display the correct variable amount, and randomly display a status for each. To do this I used the same system of storing a json file in local storage. I set the website to default having 6 friends for demo purposes. the randomization works by having a useState react hook that is updated on interval within useEffect hook. In the beginning, it sets all the friends to have an offline state, and then every 5 seconds one of them will be randomly updated to something new in the list of possible actions.
 - [x] **Hooks** - using react useState a LOT and also using useEffect. useState is used for user login information, friend statuses, and deck scoring. useEffect is used to update friend status on an interval.
-<!-- ## 🚀 Service deliverable
+## 🚀 Service deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
@@ -110,6 +110,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
 - [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
 
+<!-- 
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
