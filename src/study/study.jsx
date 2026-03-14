@@ -10,10 +10,34 @@ export function Study({user, password, score, setScore, decks}) {
   const [isFlipped, setIsFlipped] = React.useState(false);
   const [card, setCard] = React.useState({question: "苹果", answer: "apple"});
   const [cardIndex, setCardIndex] = React.useState(0);
+  const [studyStartTime, setStudyStartTime] = React.useState('Loading...');
 
   React.useEffect(() => {
     setIsFlipped(false);
     setCardIndex(0);
+  }, [studyTarget]);
+
+  // this is the part that calls a 3rd party api! 
+
+  React.useEffect(() => {
+    async function loadStudyStartTime() {
+      try {
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
+        if (!response.ok) {
+          setStudyStartTime('Time API request failed');
+          return;
+        }
+
+        const data = await response.json();
+        const formattedTime = new Date(data.utc_datetime).toLocaleString();
+        setStudyStartTime(formattedTime);
+      } catch {
+        setStudyStartTime(new Date().toLocaleString());
+      }
+    }
+
+    setStudyStartTime('Loading...');
+    loadStudyStartTime();
   }, [studyTarget]);
 
 
@@ -43,8 +67,9 @@ export function Study({user, password, score, setScore, decks}) {
 
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
-`        {isRandomMode ? <h2>Random</h2> : <h2>{activeDeck.name}</h2>}
-`        <div className="study-card">
+        {isRandomMode ? <h2>Random</h2> : <h2>{activeDeck.name}</h2>}
+        {!isRandomMode && <h2>Card # {cardIndex + 1} / {activeDeck.cards.length}</h2>}
+        <div className="study-card">
           {isFlipped ? <div>ANSWER:<br />{currentCard.answer}</div> : <div>QUESTION:<br />{currentCard.question}</div>}
         </div>
         <button className="deck" onClick={flipCard}>FLIP</button>
@@ -64,7 +89,7 @@ export function Study({user, password, score, setScore, decks}) {
         </div>
 
         <div>
-            <p style={{ marginTop: '20px' }}>Current time: 1:52pm</p>
+            <p style={{ marginTop: '20px' }}>You started studying this deck at: {studyStartTime}</p>
         </div>
       
     </main>

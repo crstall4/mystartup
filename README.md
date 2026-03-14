@@ -116,7 +116,7 @@ ALSO - I made it so users can upload their own decks. For an example of what to 
 
 - [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
 - [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
+- [x] **Calls to third party endpoints** - I did this! On the study page, it says the time that you started studying that deck. It gets the time from a 3rd party API. You can see thsi in src/study/study.jsx towards the bottom!
 - [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
 - [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
 - [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
