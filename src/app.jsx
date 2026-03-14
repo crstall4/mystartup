@@ -59,7 +59,7 @@ export default function App() {
           <li className="nav-item"><NavLink className='nav-link' to=''>Login</NavLink></li>
           {username && (<li className="nav-item"><NavLink className='nav-link' to='friends'>Friends</NavLink></li>)}
           {username && (<li className="nav-item"><NavLink className='nav-link' to='browse'>Browse Decks</NavLink></li>)}
-          {username && (<li className="nav-item"><NavLink className='nav-link' to='study'>Study</NavLink></li>)}
+          {username && (<li className="nav-item"><NavLink className='nav-link' to='study/random'>Study</NavLink></li>)}
           {username && (<li className="nav-item"><NavLink className='nav-link' to='stats'>Stats</NavLink></li>)}
 
         </menu>   
@@ -67,7 +67,7 @@ export default function App() {
     </header>
     <Routes>
       <Route path='/' element={<Login setUsername={handleSetUsername} setPassword={handleSetPassword} username={username} password={password}/>} exact />
-      <Route path='/study' element={<Study user={username} password={password} score={score} setScore={handleSetScore} />} />
+      <Route path='/study/:studyTarget' element={<Study user={username} password={password} score={score} setScore={handleSetScore} decks={decks} />} />
       <Route path='/friends' element={<Friends user={username} password={password} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
       <Route path='/browse' element={<Browse user={username} password={password} decks={decks} setDecks={setDecks} />} />
       <Route path='/stats' element={<Stats user={username} password={password} score={score}/>} />
