@@ -1,26 +1,51 @@
 import React from 'react';
+import { NavLink, useParams } from 'react-router-dom';
 import '../app.css';
 
-export function Study({user, password, score, setScore}) {
+export function Study({user, password, score, setScore, decks}) {
+  const { studyTarget } = useParams();
+  const isRandomMode = studyTarget === 'random';
+  const activeDeck = !isRandomMode ? decks.find(deck => `${deck.id}` === `${studyTarget}`) : null;
 
   const [isFlipped, setIsFlipped] = React.useState(false);
   const [card, setCard] = React.useState({question: "苹果", answer: "apple"});
+  const [cardIndex, setCardIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setIsFlipped(false);
+    setCardIndex(0);
+  }, [studyTarget]);
+
+
+  const currentCard = isRandomMode ? card : activeDeck.cards[cardIndex];
 
   function flipCard() {
     setIsFlipped(!isFlipped);
   }
 
   function nextCard(points) {
-    const newEntry = {word: card.question, points: points, date: new Date().toISOString(), user: user};
+    const newEntry = {word: currentCard.question, points: points, date: new Date().toISOString(), user: user};
     setScore(newEntry);
-    flipCard();
-    setCard({question: Math.random().toString(36).substring(7), answer: Math.random().toString(36).substring(7)});
+    setIsFlipped(false);
+
+    if (isRandomMode) {
+      setCard({question: Math.random().toString(36).substring(7), answer: Math.random().toString(36).substring(7)});
+      return;
+    }
+
+    setCardIndex((cardIndex + 1));
+    if(cardIndex + 1 >= activeDeck.cards.length) {
+      setCardIndex(0);
+      return;
+    }
+
   }
 
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
-        <div className="study-card">
-          {isFlipped ? <div>ANSWER:<br />{card.answer}</div> : <div>QUESTION:<br />{card.question}</div>}
+`        {isRandomMode ? <h2>Random</h2> : <h2>{activeDeck.name}</h2>}
+`        <div className="study-card">
+          {isFlipped ? <div>ANSWER:<br />{currentCard.answer}</div> : <div>QUESTION:<br />{currentCard.question}</div>}
         </div>
         <button className="deck" onClick={flipCard}>FLIP</button>
         

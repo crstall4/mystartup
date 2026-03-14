@@ -57,14 +57,14 @@ export function Browse({user, password, decks, setDecks}) {
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
       <div>
       <h1>Decks</h1>
-      <h3><NavLink to="/study" className="deck">Spaced Review</NavLink></h3>
+      <h3><NavLink to="/study/random" className="deck">Spaced Review</NavLink></h3>
       </div>
 
 
       <div>
         {decks.map((deck, index) => (
           <h4 key={deck.id || index}>
-            <NavLink to="/study" className="deck">{deck.name} ({deck.cards ? deck.cards.length : 0} cards)</NavLink>
+            <NavLink to={`/study/${deck.id}`} className="deck">{deck.name} ({deck.cards ? deck.cards.length : 0} cards)</NavLink>
           </h4>
         ))}
       </div>
