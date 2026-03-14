@@ -103,6 +103,17 @@ I also set the friends to be in local storage. This is because each user might h
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
+ALSO - I made it so users can upload their own decks. For an example of what to upload, you can either upload the 'test.json' file that is in my repo. or you can just create this json file on your own machine and upload it:
+```
+{
+  "name": "Spanish Basics",
+  "cards": [
+    { "question": "hola", "answer": "hello" },
+    { "question": "gracias", "answer": "thank you" }
+  ]
+}
+```
+
 - [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
 - [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
 - [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
