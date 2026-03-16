@@ -14,6 +14,22 @@ export default function App() {
   const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '["Andrew", "Michael", "Carter", "Jeffery", "Jacob", "Clayton"]'));
   const [decks, setDecks] = React.useState(JSON.parse(localStorage.getItem('decks') || '[]'));
 
+  async function refreshDecksFromBackend() {
+    const response = await fetch('/api/decks', {
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      setDecks([]);
+      localStorage.removeItem('decks');
+      return;
+    }
+
+    const backendDecks = await response.json();
+    setDecks(backendDecks);
+    localStorage.setItem('decks', JSON.stringify(backendDecks));
+  }
+
   function handleSetUsername(value) {
     setUsername(value);
     localStorage.setItem('user', value);
@@ -44,6 +60,8 @@ export default function App() {
   function handleLogout() {
     setUsername('');
     localStorage.removeItem('user');
+    setDecks([]);
+    localStorage.removeItem('decks');
     fetch('/api/auth/logout', {
       method: 'DELETE',
       credentials: 'include',
@@ -71,10 +89,10 @@ export default function App() {
       </nav>
     </header>
     <Routes>
-      <Route path='/' element={<Login setUsername={handleSetUsername} username={username} />} exact />
+      <Route path='/' element={<Login setUsername={handleSetUsername} username={username} refreshDecksFromBackend={refreshDecksFromBackend} />} exact />
       <Route path='/study/:studyTarget' element={<Study user={username} score={score} setScore={handleSetScore} decks={decks} />} />
       <Route path='/friends' element={<Friends user={username} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
-      <Route path='/browse' element={<Browse user={username} decks={decks} setDecks={setDecks} />} />
+      <Route path='/browse' element={<Browse user={username} decks={decks} setDecks={setDecks} refreshDecksFromBackend={refreshDecksFromBackend} />} />
       <Route path='/stats' element={<Stats user={username} score={score}/>} />
       <Route path='*' element={<NotFound />} />
     </Routes>

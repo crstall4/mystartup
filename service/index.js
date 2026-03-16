@@ -28,6 +28,8 @@ app.post('/api/auth/create', async (req, res) => {
 	}
 
 	const user = await createUser(username, password);
+	user.token = uuid.v4();
+	setAuthCookie(res, user.token);
 	res.send({ username: user.username });
 });
 

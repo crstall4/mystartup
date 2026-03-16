@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../app.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-export function Login({setUsername, username}) {
+export function Login({setUsername, username, refreshDecksFromBackend}) {
   const navigate = useNavigate();
   const [localUsername, setLocalUsername] = useState(username || '');
   const [localPassword, setLocalPassword] = useState('');
@@ -23,6 +23,7 @@ export function Login({setUsername, username}) {
 
     if (response.ok) {
       setUsername(localUsername);
+      await refreshDecksFromBackend();
       setLocalPassword('');
       navigate('/study/random');
       return;
@@ -47,6 +48,7 @@ export function Login({setUsername, username}) {
 
     if (response.ok) {
       setUsername(localUsername);
+      await refreshDecksFromBackend();
       setLocalPassword('');
       navigate('/study/random');
       return;
