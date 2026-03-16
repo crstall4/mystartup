@@ -6,8 +6,13 @@ export function Stats({user}) {
 
   React.useEffect(() => {
     fetch('/api/scores', { credentials: 'include' })
-      .then((res) => res.json())
-      .then((data) => setScore(data))
+      .then((res) => {
+        if (!res.ok) {
+          return [];
+        }
+        return res.json();
+      })
+      .then((data) => setScore(Array.isArray(data) ? data : []))
       .catch(() => setScore([]));
   }, []);
 
@@ -18,6 +23,7 @@ export function Stats({user}) {
         <thead>
           <tr>
             <th>Word</th>
+            <th>Answer</th>
             <th>Points</th>
             <th>Date</th>
             <th>User</th>
@@ -27,6 +33,7 @@ export function Stats({user}) {
           {score.map((entry, index) => (
             <tr key={index}>
               <td>{entry.word}</td>
+              <td>{entry.answer}</td>
               <td>{entry.points}</td>
               <td>{entry.date}</td>
               <td>{entry.user}</td>
