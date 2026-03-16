@@ -95,7 +95,7 @@ export default function App() {
       <Route path='/study/:studyTarget' element={<Study user={username} score={score} setScore={handleSetScore} decks={decks} />} />
       <Route path='/friends' element={<Friends user={username} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
       <Route path='/browse' element={<Browse user={username} decks={decks} setDecks={setDecks} refreshDecksFromBackend={refreshDecksFromBackend} />} />
-      <Route path='/stats' element={<Stats user={username} score={score}/>} />
+      <Route path='/stats' element={<Stats user={username}/>} />
       <Route path='*' element={<NotFound />} />
     </Routes>
 

@@ -1,7 +1,15 @@
 import React from 'react';
 import '../app.css';
 
-export function Stats({user, score}) {
+export function Stats({user}) {
+  const [score, setScore] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch('/api/scores', { credentials: 'include' })
+      .then((res) => res.json())
+      .then((data) => setScore(data))
+      .catch(() => setScore([]));
+  }, []);
 
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
