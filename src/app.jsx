@@ -10,7 +10,6 @@ import { Stats } from './stats/stats';
 
 export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
-  const [score, setScore] = React.useState(JSON.parse(localStorage.getItem('score') || '[]'));
   const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '["Andrew", "Michael", "Carter", "Jeffery", "Jacob", "Clayton"]'));
   const [decks, setDecks] = React.useState(JSON.parse(localStorage.getItem('decks') || '[]'));
 
