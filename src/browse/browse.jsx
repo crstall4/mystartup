@@ -48,7 +48,7 @@ export function Browse({user, decks, setDecks, refreshDecksFromBackend}) {
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
       <div>
       <h1>Decks</h1>
-      <h3><NavLink to="/study/random" className="deck">Spaced Review</NavLink></h3>
+      <h3><NavLink to="/study/random" className="deck">Random Cards</NavLink></h3>
       </div>
 
 

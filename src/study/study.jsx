@@ -8,7 +8,7 @@ export function Study({user, setScore, decks}) {
   const activeDeck = !isRandomMode ? decks.find(deck => `${deck.id}` === `${studyTarget}`) : null;
 
   const [isFlipped, setIsFlipped] = React.useState(false);
-  const [card, setCard] = React.useState({question: "苹果", answer: "apple"});
+  const [card, setCard] = React.useState({question: Math.random().toString(36).substring(7), answer: Math.random().toString(36).substring(7)});
   const [cardIndex, setCardIndex] = React.useState(0);
   const [studyStartTime, setStudyStartTime] = React.useState('Loading...');
 
