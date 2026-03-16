@@ -100,7 +100,7 @@ That will error if the username is already taken.
 
 Login user:
 test wrong password: ```curl -X POST http://localhost:4000/api/auth/login -H "Content-Type: application/json" -d '{"username":"clayton","password":"wrong"}' -c cookies.txt``` 
-test correct password: ```curl -X POST http://localhost:4000/api/auth/login -H "Content-Type: application/json" -d '{"username":"clayton","password":"secret"}' -c cookies.txt'``` 
+test correct password: ```curl -X POST http://localhost:4000/api/auth/login -H "Content-Type: application/json" -d '{"username":"clayton","password":"secret"}' -c cookies.txt``` 
 Login will create a cookie. Don't worry about this in browser. If you are testing and running these via command line, the cookie will be saved as a file into 'cookies.txt'
 
 Logout user:

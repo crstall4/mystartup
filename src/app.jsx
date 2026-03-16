@@ -35,11 +35,13 @@ export default function App() {
     localStorage.setItem('user', value);
   }
 
-  function handleSetScore(newEntry) {
-    let scoreList = [...score];
-    scoreList.push(newEntry);
-    setScore(scoreList);
-    localStorage.setItem('score', JSON.stringify(scoreList));
+  async function handleSetScore(newEntry) {
+    await fetch('/api/scores', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(newEntry),
+    });
   }
   function handleAddFriend(friend) {
     let friendsList = [...friends];
