@@ -105,3 +105,9 @@ Login will create a cookie. Don't worry about this in browser. If you are testin
 
 Logout user:
 ```curl -X DELETE http://localhost:4000/api/auth/logout -b cookies.txt```
+
+Create deck:
+```curl -X POST httpdecks   -H "Content-Type: application/json"   -b cookies.txt   -d '{"name":"Spanish Basics","cards":[{"question":"hola","answer":"hello"},{"question":"adios","answer":"goodbye"}]}'```
+
+Get user's decks:
+```curl -X GET http://localhost:4000/api/decks -b cookies.txt```

@@ -6,6 +6,7 @@ const uuid = require('uuid');
 const app = express();
 
 let users = [];
+let decks = [];
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -59,14 +60,55 @@ app.delete('/api/auth/logout', (req, res) => {
 	res.status(204).end();
 });
 
-const verifyAuth = (req, res, next) => {
+app.get('/api/decks', verifyAuth, (req, res) => {
+	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+	const userDecks = decks.filter((deck) => deck.owner === user.username);
+	res.send(userDecks);
+});
+
+app.get('/api/alldecks', verifyAuth, (req, res) => {
+	res.send(decks);
+});
+
+app.post('/api/decks', verifyAuth, (req, res) => {
+	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+	const incomingDeck = req.body;
+
+	if (!incomingDeck || !incomingDeck.name || !Array.isArray(incomingDeck.cards) || incomingDeck.cards.length === 0) {
+		res.status(400).send({ msg: 'Deck must have a name and at least one card.' });
+		return;
+	}
+
+	for (const card of incomingDeck.cards) {
+		if (!card || !card.question || !card.answer) {
+			res.status(400).send({ msg: 'All cards must have question and answer.' });
+			return;
+		}
+	}
+
+	const newDeck = {
+		id: uuid.v4(),
+		name: String(incomingDeck.name),
+		owner: user.username,
+		cards: incomingDeck.cards.map((card, index) => ({
+			id: `${index + 1}`,
+			question: String(card.question),
+			answer: String(card.answer),
+		})),
+	};
+
+	decks.push(newDeck);
+	res.status(201).send(newDeck);
+});
+
+function verifyAuth(req, res, next) {
 	const user = users.find((u) => u.token === req.cookies[authCookieName]);
 	if (user) {
 		next();
 	} else {
 		res.status(401).send({ msg: 'Unauthorized' });
 	}
-};
+}
 
 async function createUser(username, password) {
 	const passwordHash = await bcrypt.hash(password, 10);
