@@ -6,6 +6,7 @@ const uuid = require('uuid');
 const app = express();
 
 let users = [];
+authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
@@ -49,6 +50,24 @@ app.post('/api/auth/login', async (req, res) => {
 	res.send({ username: user.username });
 });
 
+app.delete('/api/auth/logout', (req, res) => {
+	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+	if (user) {
+		delete user.token;
+	}
+	res.clearCookie(authCookieName);
+	res.status(204).end();
+});
+
+const verifyAuth = (req, res, next) => {
+	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+	if (user) {
+		next();
+	} else {
+		res.status(401).send({ msg: 'Unauthorized' });
+	}
+};
+
 async function createUser(username, password) {
 	const passwordHash = await bcrypt.hash(password, 10);
 	const user = { username, password: passwordHash };
@@ -57,7 +76,7 @@ async function createUser(username, password) {
 }
 
 function setAuthCookie(res, token) {
-	res.cookie("token", token, {
+	res.cookie(authCookieName, token, {
 		maxAge: 1000 * 60 * 60 * 24 * 365,
 		httpOnly: true,
 		sameSite: 'strict',
