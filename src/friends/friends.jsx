@@ -1,7 +1,7 @@
 import React from 'react';
 import '../app.css';
 
-export function Friends({user, password, friends, addFriend, removeFriend}) {
+export function Friends({user, friends, addFriend, removeFriend}) {
   const statusesOptions = ["Offline", "On Friends Page", "On Login Page", "On Study Page", "On Browse Page"];
   const [statuses, setStatuses] = React.useState({});
   const [friendName, setFriendName] = React.useState('');

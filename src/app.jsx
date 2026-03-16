@@ -10,7 +10,6 @@ import { Stats } from './stats/stats';
 
 export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
-  const [password, setPassword] = React.useState(localStorage.getItem('password') || '');
   const [score, setScore] = React.useState(JSON.parse(localStorage.getItem('score') || '[]'));
   const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '["Andrew", "Michael", "Carter", "Jeffery", "Jacob", "Clayton"]'));
   const [decks, setDecks] = React.useState(JSON.parse(localStorage.getItem('decks') || '[]'));
@@ -18,11 +17,6 @@ export default function App() {
   function handleSetUsername(value) {
     setUsername(value);
     localStorage.setItem('user', value);
-  }
-
-  function handleSetPassword(value) {
-    setPassword(value);
-    localStorage.setItem('password', value);
   }
 
   function handleSetScore(newEntry) {
@@ -66,11 +60,11 @@ export default function App() {
       </nav>
     </header>
     <Routes>
-      <Route path='/' element={<Login setUsername={handleSetUsername} setPassword={handleSetPassword} username={username} password={password}/>} exact />
-      <Route path='/study/:studyTarget' element={<Study user={username} password={password} score={score} setScore={handleSetScore} decks={decks} />} />
-      <Route path='/friends' element={<Friends user={username} password={password} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
-      <Route path='/browse' element={<Browse user={username} password={password} decks={decks} setDecks={setDecks} />} />
-      <Route path='/stats' element={<Stats user={username} password={password} score={score}/>} />
+      <Route path='/' element={<Login setUsername={handleSetUsername} username={username} />} exact />
+      <Route path='/study/:studyTarget' element={<Study user={username} score={score} setScore={handleSetScore} decks={decks} />} />
+      <Route path='/friends' element={<Friends user={username} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
+      <Route path='/browse' element={<Browse user={username} decks={decks} setDecks={setDecks} />} />
+      <Route path='/stats' element={<Stats user={username} score={score}/>} />
       <Route path='*' element={<NotFound />} />
     </Routes>
 

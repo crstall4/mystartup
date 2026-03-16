@@ -6,7 +6,7 @@ const uuid = require('uuid');
 const app = express();
 
 let users = [];
-authCookieName = 'token';
+const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());

@@ -2,16 +2,58 @@ import React, { useState } from 'react';
 import '../app.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-export function Login({setUsername, setPassword, username, password}) {
+export function Login({setUsername, username}) {
   const navigate = useNavigate();
   const [localUsername, setLocalUsername] = useState(username || '');
-  const [localPassword, setLocalPassword] = useState(password || '');
+  const [localPassword, setLocalPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
 
-  function loginUser(e) {
+  async function loginUser(e) {
     e.preventDefault();
-    setUsername(localUsername);
-    setPassword(localPassword);
-    navigate('/study');
+
+    setLoginError('');
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username: localUsername, password: localPassword }),
+      credentials: 'include',
+    });
+
+    if (response.ok) {
+      setUsername(localUsername);
+      setLocalPassword('');
+      navigate('/study/random');
+      return;
+    }
+
+    const body = await response.json();
+    setLoginError(body.msg || 'Login failed');
+  }
+
+  async function createUser(e) {
+    e.preventDefault();
+
+    setLoginError('');
+    const response = await fetch('/api/auth/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username: localUsername, password: localPassword }),
+      credentials: 'include',
+    });
+
+    if (response.ok) {
+      setUsername(localUsername);
+      setLocalPassword('');
+      navigate('/study/random');
+      return;
+    }
+
+    const body = await response.json();
+    setLoginError(body.msg || 'Registration failed');
   }
 
   return (
@@ -29,8 +71,9 @@ export function Login({setUsername, setPassword, username, password}) {
         </div>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
           <button type="submit" onClick={loginUser} className="btn btn-primary">Login</button>
-          <button type="button" onClick={loginUser} className="btn btn-secondary">Create</button>
+          <button type="button" onClick={createUser} className="btn btn-secondary">Create</button>
         </div>
+        {loginError && <p className="text-danger mt-3">{loginError}</p>}
       </form>
       </div>
             <img id="logo" src="logo.png" width="200" className="mx-auto d-block" alt="LangLearn Logo" />

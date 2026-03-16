@@ -1,7 +1,7 @@
 import React from 'react';
 import '../app.css';
 
-export function Stats({user, password, score}) {
+export function Stats({user, score}) {
 
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">

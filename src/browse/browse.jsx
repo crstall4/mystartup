@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../app.css';
 
-export function Browse({user, password, decks, setDecks}) {
+export function Browse({user, decks, setDecks}) {
   const [uploadStatus, setUploadStatus] = React.useState('');
 
   async function handleDeckUpload(event) {
