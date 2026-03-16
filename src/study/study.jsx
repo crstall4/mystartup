@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import '../app.css';
 
-export function Study({user, score, setScore, decks}) {
+export function Study({user, setScore, decks}) {
   const { studyTarget } = useParams();
   const isRandomMode = studyTarget === 'random';
   const activeDeck = !isRandomMode ? decks.find(deck => `${deck.id}` === `${studyTarget}`) : null;
