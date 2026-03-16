@@ -7,6 +7,7 @@ const app = express();
 
 let users = [];
 let decks = [];
+let scores = [];
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -101,6 +102,32 @@ app.post('/api/decks', verifyAuth, (req, res) => {
 
 	decks.push(newDeck);
 	res.status(201).send(newDeck);
+});
+
+app.get('/api/scores', verifyAuth, (req, res) => {
+	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+	const userScores = scores.filter((entry) => entry.user === user.username);
+	res.send(userScores);
+});
+
+app.post('/api/scores', verifyAuth, (req, res) => {
+	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+	const incomingScore = req.body;
+
+	if (!incomingScore || !incomingScore.word || typeof incomingScore.points !== 'number') {
+		res.status(400).send({ msg: 'Score must include word and numeric points.' });
+		return;
+	}
+
+	const newScore = {
+		word: String(incomingScore.word),
+		points: incomingScore.points,
+		date: incomingScore.date || new Date().toISOString(),
+		user: user.username,
+	};
+
+	scores.push(newScore);
+	res.status(201).send(newScore);
 });
 
 function verifyAuth(req, res, next) {

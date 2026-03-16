@@ -95,7 +95,7 @@ Learned about the fetch command and made this code-pen
 
 Created login/logout feature. This is how to test the backend directly
 Create user:
-```curl -X POST http://localhost:4000/api/auth/create -H "Content-Type: application/json" -d '{"username":"clayton","password":"secret"}'```
+```curl -X POST http://localhost:4000/api/auth/create -H "Content-Type: application/json" -d '{"username":"clayton","password":"secret"}' -c cookies.txt```
 That will error if the username is already taken. 
 
 Login user:
@@ -107,7 +107,13 @@ Logout user:
 ```curl -X DELETE http://localhost:4000/api/auth/logout -b cookies.txt```
 
 Create deck:
-```curl -X POST httpdecks   -H "Content-Type: application/json"   -b cookies.txt   -d '{"name":"Spanish Basics","cards":[{"question":"hola","answer":"hello"},{"question":"adios","answer":"goodbye"}]}'```
+```curl -X POST http://localhost:4000/api/decks -H "Content-Type: application/json" -b cookies.txt -d '{"name":"Spanish Basics","cards":[{"question":"hola","answer":"hello"},{"question":"adios","answer":"goodbye"}]}'```
 
 Get user's decks:
 ```curl -X GET http://localhost:4000/api/decks -b cookies.txt```
+
+Post a score:
+```curl -X POST http://localhost:4000/api/scores -H "Content-Type: application/json" -b cookies.txt -d '{"word":"hola","points":4,"date":"2026-03-16T12:00:00.000Z"}'```
+
+Read Scores:
+```curl -X GET http://localhost:4000/api/scores -b cookies.txt```
