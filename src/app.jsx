@@ -41,6 +41,16 @@ export default function App() {
     localStorage.setItem('friends', JSON.stringify(friendsList));
   }
 
+  function handleLogout() {
+    setUsername('');
+    localStorage.removeItem('user');
+    fetch('/api/auth/logout', {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    window.location.assign('/');
+  }
+
   return (
   <BrowserRouter>
   <div className="body">
@@ -55,6 +65,7 @@ export default function App() {
           {username && (<li className="nav-item"><NavLink className='nav-link' to='browse'>Browse Decks</NavLink></li>)}
           {username && (<li className="nav-item"><NavLink className='nav-link' to='study/random'>Study</NavLink></li>)}
           {username && (<li className="nav-item"><NavLink className='nav-link' to='stats'>Stats</NavLink></li>)}
+          {username && (<li className="nav-item"><button type="button" className="nav-link" onClick={handleLogout}>Logout</button></li>)}
 
         </menu>   
       </nav>
