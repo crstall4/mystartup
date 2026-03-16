@@ -5,17 +5,78 @@ import '../app.css';
 export function Study({user, setScore, decks}) {
   const { studyTarget } = useParams();
   const isRandomMode = studyTarget === 'random';
-  const activeDeck = !isRandomMode ? decks.find(deck => `${deck.id}` === `${studyTarget}`) : null;
+  const isReviewMode = studyTarget === 'review';
+  const activeDeck = !isRandomMode && !isReviewMode ? decks.find(deck => `${deck.id}` === `${studyTarget}`) : null;
 
   const [isFlipped, setIsFlipped] = React.useState(false);
   const [card, setCard] = React.useState({question: Math.random().toString(36).substring(7), answer: Math.random().toString(36).substring(7)});
   const [cardIndex, setCardIndex] = React.useState(0);
   const [studyStartTime, setStudyStartTime] = React.useState('Loading...');
+  const [reviewCards, setReviewCards] = React.useState([]);
+
+
+  // most copmlicated function, calculates what the spaced review cards should show. this is not a final product, and i am open to tweaking this. I just implemented a very simple algorithm to begin with
+  // what it does is it finds all unique cards, (cards that have the same front and back) from within the users score history. Then, it takes the most recent score entry for each card, and sorts them by points (lowest to highest) and then by date (oldest to newest). This way you see the cards you are worst at first, sorted by how long ago you last saw them.
+  async function loadReviewCards() {
+    try {
+      const response = await fetch('/api/scores', { credentials: 'include' });
+      if (!response.ok) {
+        setReviewCards([]);
+        return;
+      }
+
+      const data = await response.json();
+      const scoreEntries = Array.isArray(data) ? data : [];
+
+      const latestByCard = new Map();
+      scoreEntries.forEach((entry) => {
+        if (!entry || !entry.word) {
+          return;
+        }
+
+        const question = String(entry.word);
+        const answer = String(entry.answer || '');
+        const key = `${question}|||${answer}`;
+        const timestamp = Date.parse(entry.date || 0) || 0;
+        const existing = latestByCard.get(key);
+
+        if (!existing || timestamp > existing.timestamp) {
+          latestByCard.set(key, {
+            question,
+            answer,
+            points: Number(entry.points) || 0,
+            date: entry.date || new Date(0).toISOString(),
+            timestamp,
+          });
+        }
+      });
+
+      const cards = Array.from(latestByCard.values()).sort((a, b) => {
+        if (a.points !== b.points) {
+          return a.points - b.points;
+        }
+        return a.timestamp - b.timestamp;
+      });
+
+      setReviewCards(cards);
+      setCardIndex(0);
+    } catch {
+      setReviewCards([]);
+    }
+  }
 
   React.useEffect(() => {
     setIsFlipped(false);
     setCardIndex(0);
   }, [studyTarget]);
+
+  React.useEffect(() => {
+    if (!isReviewMode) {
+      return;
+    }
+
+    loadReviewCards();
+  }, [isReviewMode]);
 
   // this is the part that calls a 3rd party api! 
 
@@ -41,19 +102,36 @@ export function Study({user, setScore, decks}) {
   }, [studyTarget]);
 
 
-  const currentCard = isRandomMode ? card : activeDeck.cards[cardIndex];
+  const currentCard = isRandomMode
+    ? card
+    : isReviewMode
+      ? reviewCards[cardIndex] || null
+      : (activeDeck?.cards?.[cardIndex] || null);
 
   function flipCard() {
     setIsFlipped(!isFlipped);
   }
 
-  function nextCard(points) {
+  async function nextCard(points) {
+    if (!currentCard) {
+      return;
+    }
+
     const newEntry = {word: currentCard.question, answer: currentCard.answer, points: points, date: new Date().toISOString(), user: user};
-    setScore(newEntry);
+    await setScore(newEntry);
     setIsFlipped(false);
 
     if (isRandomMode) {
       setCard({question: Math.random().toString(36).substring(7), answer: Math.random().toString(36).substring(7)});
+      return;
+    }
+
+    if (isReviewMode) {
+      if(cardIndex + 1 >= reviewCards.length) {
+        await loadReviewCards();
+      } else {
+        setCardIndex(cardIndex + 1);
+      }
       return;
     }
 
@@ -67,11 +145,15 @@ export function Study({user, setScore, decks}) {
 
   return (
     <main className="container-fluid bg-light text-center text-dark d-flex flex-column justify-content-center">
-        {isRandomMode ? <h2>Random</h2> : <h2>{activeDeck.name}</h2>}
-        {!isRandomMode && <h2>Card # {cardIndex + 1} / {activeDeck.cards.length}</h2>}
+        {isRandomMode ? <h2>Random</h2> : isReviewMode ? <h2>Review</h2> : <h2>{activeDeck?.name}</h2>}
+        {isReviewMode && <h2>Card # {Math.min(cardIndex + 1, Math.max(reviewCards.length, 1))} / {reviewCards.length}</h2>}
+        {!isRandomMode && !isReviewMode && <h2>Card # {cardIndex + 1} / {activeDeck?.cards?.length || 0}</h2>}
+        {!currentCard && <div>No cards available for this mode yet.</div>}
+        {currentCard && (
         <div className="study-card">
           {isFlipped ? <div>ANSWER:<br />{currentCard.answer}</div> : <div>QUESTION:<br />{currentCard.question}</div>}
         </div>
+        )}
         <button className="deck" onClick={flipCard}>FLIP</button>
         
         <div

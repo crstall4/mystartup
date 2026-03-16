@@ -11,8 +11,10 @@ let scores = [];
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
+// JSON body parsing using built-in middleware. Same thing is used in Simon.
 app.use(express.json());
 app.use(cookieParser());
+//front-end static content hosting happens here.
 app.use(express.static('public'));
 
 app.get('/api/health', (req, res) => {
@@ -104,6 +106,7 @@ app.post('/api/decks', verifyAuth, (req, res) => {
 	res.status(201).send(newDeck);
 });
 
+//example of restricted endpoint:
 app.get('/api/scores', verifyAuth, (req, res) => {
 	const user = users.find((u) => u.token === req.cookies[authCookieName]);
 	const userScores = scores.filter((entry) => entry.user === user.username);
@@ -140,6 +143,7 @@ function verifyAuth(req, res, next) {
 	}
 }
 
+//bcrypt used here.
 async function createUser(username, password) {
 	const passwordHash = await bcrypt.hash(password, 10);
 	const user = { username, password: passwordHash };
@@ -155,6 +159,7 @@ function setAuthCookie(res, token) {
 	});
 }
 
+//the rerouting happens here.
 app.use((req, res) => {
 	if (req.path.startsWith('/api')) {
 		res.status(404).send({ msg: 'Not found' });

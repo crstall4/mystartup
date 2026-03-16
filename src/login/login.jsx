@@ -12,6 +12,7 @@ export function Login({setUsername, username, refreshDecksFromBackend}) {
     e.preventDefault();
 
     setLoginError('');
+    //this is one of the fetches that I added.
     const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: {

@@ -114,12 +114,12 @@ ALSO - I made it so users can upload their own decks. For an example of what to 
 }
 ```
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [x] **Calls to third party endpoints** - I did this! On the study page, it says the time that you started studying that deck. It gets the time from a 3rd party API. You can see thsi in src/study/study.jsx towards the bottom!
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Built a backend service and ran it locally on port 4000. You can see this at service/index.js
+- [x] **Static middleware for frontend** - Uses express built-in json body parsing middleware. Also uses static hosting middleware! These are found in servie/index.js. there are also comments that highlight where they are.
+- [x] **Calls to third party endpoints** - This wasn't super necessary for the app I built, but to check the box, I made the study page fetch UTC time from WorldTimeAPI and shows study start time. You can see this right in the study page of the website, or in the code in the study.jsx file.
+- [x] **Backend service endpoints** - Added tons of these. You can see the tests for them in notes.md. Or just open index.js. I use backend services to manage the logging in, logging out, registering, creating decks, listing decks, and score history.
+- [x] **Frontend calls service endpoints** - Again, I added a ton of these. Not hard to find. I commented in login.jsx highlighting just one of them, the fetch that logs in the user.
+- [x] **Supports registration, login, logout, and restricted endpoint** - service/index.js has this all over. I added a comment over the create user that uses bcrypt to has the password. I also have the endpoints for /api/auth/login /api/auth/logout and /api/auth/create. Restricted endpoint example would be /api/scores. This requires you to pass through the verifyAuth function before doing anything. Unauthenticated users cannot use this.
 
 <!-- 
 ## 🚀 DB deliverable
