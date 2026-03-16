@@ -48,7 +48,7 @@ export function Study({user, setScore, decks}) {
   }
 
   function nextCard(points) {
-    const newEntry = {word: currentCard.question, points: points, date: new Date().toISOString(), user: user};
+    const newEntry = {word: currentCard.question, answer: currentCard.answer, points: points, date: new Date().toISOString(), user: user};
     setScore(newEntry);
     setIsFlipped(false);
 

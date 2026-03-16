@@ -121,6 +121,7 @@ app.post('/api/scores', verifyAuth, (req, res) => {
 
 	const newScore = {
 		word: String(incomingScore.word),
+		answer: incomingScore.answer ? String(incomingScore.answer) : '',
 		points: incomingScore.points,
 		date: incomingScore.date || new Date().toISOString(),
 		user: user.username,
