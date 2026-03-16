@@ -29,11 +29,39 @@ app.post('/api/auth/create', async (req, res) => {
 	res.send({ username: user.username });
 });
 
+app.post('/api/auth/login', async (req, res) => {
+	const { username, password } = req.body;
+
+	const user = users.find((u) => u.username === username);
+	if (!user) {
+		res.status(401).send({ msg: 'Invalid credentials' });
+		return;
+	}
+
+	const passwordMatches = await bcrypt.compare(password, user.password);
+	if (!passwordMatches) {
+		res.status(401).send({ msg: 'Invalid credentials' });
+		return;
+	}
+
+	user.token = uuid.v4();
+	setAuthCookie(res, user.token);
+	res.send({ username: user.username });
+});
+
 async function createUser(username, password) {
 	const passwordHash = await bcrypt.hash(password, 10);
 	const user = { username, password: passwordHash };
 	users.push(user);
 	return user;
+}
+
+function setAuthCookie(res, token) {
+	res.cookie("token", token, {
+		maxAge: 1000 * 60 * 60 * 24 * 365,
+		httpOnly: true,
+		sameSite: 'strict',
+	});
 }
 
 app.use((req, res) => {
