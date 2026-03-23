@@ -25,16 +25,15 @@ app.get('/api/health', (req, res) => {
 app.post('/api/auth/create', async (req, res) => {
 	const { username, password } = req.body;
 
-	const existing = users.find((u) => u.username === username);
-	if (existing) {
+	if (await DB.getUser(username)) {
 		res.status(409).send({ msg: 'Username already taken' });
-		return;
+	} else {
+		const user = await createUser(username, password);
+		user.token = uuid.v4();
+		await DB.updateUser(username, { token: user.token });
+		setAuthCookie(res, user.token);
+		res.send({ username: user.username });
 	}
-
-	const user = await createUser(username, password);
-	user.token = uuid.v4();
-	setAuthCookie(res, user.token);
-	res.send({ username: user.username });
 });
 
 app.post('/api/auth/login', async (req, res) => {
