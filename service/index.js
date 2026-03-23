@@ -39,7 +39,7 @@ app.post('/api/auth/create', async (req, res) => {
 app.post('/api/auth/login', async (req, res) => {
 	const { username, password } = req.body;
 
-	const user = users.find((u) => u.username === username);
+	const user = await DB.getUser(username);
 	if (!user) {
 		res.status(401).send({ msg: 'Invalid credentials' });
 		return;
@@ -52,6 +52,7 @@ app.post('/api/auth/login', async (req, res) => {
 	}
 
 	user.token = uuid.v4();
+	await DB.updateUser(user);
 	setAuthCookie(res, user.token);
 	res.send({ username: user.username });
 });
