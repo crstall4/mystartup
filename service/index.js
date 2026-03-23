@@ -30,7 +30,7 @@ app.post('/api/auth/create', async (req, res) => {
 	} else {
 		const user = await createUser(username, password);
 		user.token = uuid.v4();
-		await DB.updateUser(username, { token: user.token });
+		await DB.updateUser(user);
 		setAuthCookie(res, user.token);
 		res.send({ username: user.username });
 	}
@@ -57,17 +57,17 @@ app.post('/api/auth/login', async (req, res) => {
 	res.send({ username: user.username });
 });
 
-app.delete('/api/auth/logout', (req, res) => {
-	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+app.delete('/api/auth/logout', async (req, res) => {
+	const user = await DB.getUserByToken(req.cookies[authCookieName]);
 	if (user) {
-		delete user.token;
+		await DB.updateUserRemoveAuth(user);
 	}
 	res.clearCookie(authCookieName);
 	res.status(204).end();
 });
 
-app.get('/api/decks', verifyAuth, (req, res) => {
-	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+app.get('/api/decks', verifyAuth, async (req, res) => {
+	const user = await DB.getUserByToken(req.cookies[authCookieName]);
 	const userDecks = decks.filter((deck) => deck.owner === user.username);
 	res.send(userDecks);
 });
@@ -76,8 +76,8 @@ app.get('/api/alldecks', verifyAuth, (req, res) => {
 	res.send(decks);
 });
 
-app.post('/api/decks', verifyAuth, (req, res) => {
-	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+app.post('/api/decks', verifyAuth, async (req, res) => {
+	const user = await DB.getUserByToken(req.cookies[authCookieName]);
 	const incomingDeck = req.body;
 
 	if (!incomingDeck || !incomingDeck.name || !Array.isArray(incomingDeck.cards) || incomingDeck.cards.length === 0) {
@@ -108,14 +108,14 @@ app.post('/api/decks', verifyAuth, (req, res) => {
 });
 
 //example of restricted endpoint:
-app.get('/api/scores', verifyAuth, (req, res) => {
-	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+app.get('/api/scores', verifyAuth, async (req, res) => {
+	const user = await DB.getUserByToken(req.cookies[authCookieName]);
 	const userScores = scores.filter((entry) => entry.user === user.username);
 	res.send(userScores);
 });
 
-app.post('/api/scores', verifyAuth, (req, res) => {
-	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+app.post('/api/scores', verifyAuth, async (req, res) => {
+	const user = await DB.getUserByToken(req.cookies[authCookieName]);
 	const incomingScore = req.body;
 
 	if (!incomingScore || !incomingScore.word || typeof incomingScore.points !== 'number') {
@@ -135,8 +135,8 @@ app.post('/api/scores', verifyAuth, (req, res) => {
 	res.status(201).send(newScore);
 });
 
-function verifyAuth(req, res, next) {
-	const user = users.find((u) => u.token === req.cookies[authCookieName]);
+async function verifyAuth(req, res, next) {
+	const user = await DB.getUserByToken(req.cookies[authCookieName]);
 	if (user) {
 		next();
 	} else {
@@ -148,7 +148,7 @@ function verifyAuth(req, res, next) {
 async function createUser(username, password) {
 	const passwordHash = await bcrypt.hash(password, 10);
 	const user = { username, password: passwordHash };
-	users.push(user);
+	await DB.addUser(user);
 	return user;
 }
 
