@@ -160,6 +160,14 @@ function setAuthCookie(res, token) {
 	});
 }
 
+app.get('/api/current-weather', async (req, res) => {
+	const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=40.2338&longitude=-111.6585&current=temperature_2m,weather_code&timezone=America/Denver&temperature_unit=fahrenheit');
+	const data = await response.json();
+	res.send({
+		temperature: data.current.temperature_2m,
+	});
+});
+
 //the rerouting happens here.
 app.use((req, res) => {
 	if (req.path.startsWith('/api')) {

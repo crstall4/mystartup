@@ -11,7 +11,7 @@ export function Study({user, setScore, decks}) {
   const [isFlipped, setIsFlipped] = React.useState(false);
   const [card, setCard] = React.useState({question: Math.random().toString(36).substring(7), answer: Math.random().toString(36).substring(7)});
   const [cardIndex, setCardIndex] = React.useState(0);
-  const [studyStartTime, setStudyStartTime] = React.useState('Loading...');
+  const [provoTemp, setProvoTemp] = React.useState('Loading...');
   const [reviewCards, setReviewCards] = React.useState([]);
 
 
@@ -81,24 +81,23 @@ export function Study({user, setScore, decks}) {
   // this is the part that calls a 3rd party api! 
 
   React.useEffect(() => {
-    async function loadStudyStartTime() {
+    async function loadprovoTemp() {
       try {
-        const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
+        const response = await fetch('/api/current-weather');
         if (!response.ok) {
-          setStudyStartTime('Time API request failed');
+          setProvoTemp('Weather API request failed');
           return;
         }
 
         const data = await response.json();
-        const formattedTime = new Date(data.utc_datetime).toLocaleString();
-        setStudyStartTime(formattedTime);
+        setProvoTemp(data.temperature);
       } catch {
-        setStudyStartTime(new Date().toLocaleString());
+        setProvoTemp("Error fetching weather");
       }
     }
 
-    setStudyStartTime('Loading...');
-    loadStudyStartTime();
+    setProvoTemp('Loading...');
+    loadprovoTemp();
   }, [studyTarget]);
 
 
@@ -171,7 +170,7 @@ export function Study({user, setScore, decks}) {
         </div>
 
         <div>
-            <p style={{ marginTop: '20px' }}>You started studying this deck at: {studyStartTime}</p>
+            <p style={{ marginTop: '20px' }}>It is currently {provoTemp}°F in Provo, Utah</p>
         </div>
       
     </main>
