@@ -6,6 +6,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('langlearn');
 const userCollection = db.collection('user');
+const deckCollection = db.collection('deck');
 
 //simons test db code
 (async function testConnection() {
@@ -38,10 +39,24 @@ async function updateUserRemoveAuth(user) {
   await userCollection.updateOne({ username: user.username }, { $unset: { token: 1 } });
 }
 
+function getUserDecks(username) {
+  return deckCollection.find({ username: username }).toArray();
+}
+
+function getAllDecks() {
+  return deckCollection.find({}).toArray();
+}
+
+function addDeck(deck) {
+  return deckCollection.insertOne(deck);
+}
+
 module.exports = {
   getUser,
   getUserByToken,
   addUser,
   updateUser,
   updateUserRemoveAuth,
+  getUserDecks,
+  getAllDecks,
 };

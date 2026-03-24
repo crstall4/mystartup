@@ -6,9 +6,8 @@ const DB = require('./database.js');
 
 const app = express();
 
-let users = [];
-let decks = [];
 let scores = [];
+
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -68,11 +67,12 @@ app.delete('/api/auth/logout', async (req, res) => {
 
 app.get('/api/decks', verifyAuth, async (req, res) => {
 	const user = await DB.getUserByToken(req.cookies[authCookieName]);
-	const userDecks = decks.filter((deck) => deck.owner === user.username);
+	const userDecks = await DB.getUserDecks(user.username);
 	res.send(userDecks);
 });
 
 app.get('/api/alldecks', verifyAuth, (req, res) => {
+	const decks = DB.getAllDecks();
 	res.send(decks);
 });
 
@@ -103,7 +103,7 @@ app.post('/api/decks', verifyAuth, async (req, res) => {
 		})),
 	};
 
-	decks.push(newDeck);
+	await DB.addDeck(newDeck);
 	res.status(201).send(newDeck);
 });
 
