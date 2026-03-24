@@ -7,6 +7,7 @@ const client = new MongoClient(url);
 const db = client.db('langlearn');
 const userCollection = db.collection('user');
 const deckCollection = db.collection('deck');
+const scoreCollection = db.collection('score');
 
 //simons test db code
 (async function testConnection() {
@@ -47,8 +48,16 @@ function getAllDecks() {
   return deckCollection.find({}).toArray();
 }
 
-function addDeck(deck) {
-  return deckCollection.insertOne(deck);
+async function addDeck(deck) {
+  await deckCollection.insertOne(deck);
+}
+
+function getUserScores(username) {
+  return scoreCollection.find({ user: username }).toArray();
+}
+
+async function addScore(score) {
+  await scoreCollection.insertOne(score);
 }
 
 module.exports = {
@@ -60,4 +69,6 @@ module.exports = {
   getUserDecks,
   getAllDecks,
   addDeck,
+  getUserScores,
+  addScore,
 };

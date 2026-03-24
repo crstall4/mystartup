@@ -6,8 +6,6 @@ const DB = require('./database.js');
 
 const app = express();
 
-let scores = [];
-
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -110,7 +108,7 @@ app.post('/api/decks', verifyAuth, async (req, res) => {
 //example of restricted endpoint:
 app.get('/api/scores', verifyAuth, async (req, res) => {
 	const user = await DB.getUserByToken(req.cookies[authCookieName]);
-	const userScores = scores.filter((entry) => entry.user === user.username);
+	const userScores = await DB.getUserScores(user.username);
 	res.send(userScores);
 });
 
@@ -130,8 +128,7 @@ app.post('/api/scores', verifyAuth, async (req, res) => {
 		date: incomingScore.date || new Date().toISOString(),
 		user: user.username,
 	};
-
-	scores.push(newScore);
+	await DB.addScore(newScore);
 	res.status(201).send(newScore);
 });
 
