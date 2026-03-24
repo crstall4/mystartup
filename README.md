@@ -121,15 +121,24 @@ ALSO - I made it so users can upload their own decks. For an example of what to 
 - [x] **Frontend calls service endpoints** - Again, I added a ton of these. Not hard to find. I commented in login.jsx highlighting just one of them, the fetch that logs in the user.
 - [x] **Supports registration, login, logout, and restricted endpoint** - service/index.js has this all over. I added a comment over the create user that uses bcrypt to has the password. I also have the endpoints for /api/auth/login /api/auth/logout and /api/auth/create. Restricted endpoint example would be /api/scores. This requires you to pass through the verifyAuth function before doing anything. Unauthenticated users cannot use this.
 
-<!-- 
+
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+Also, this is a message for Weston in case you are reading this... Sorry that on the last deliverable my API call wasnt working. It looked like it was from the frontend, because the time was showing, but I had competely forgot that I put the time thing in a try/catch loop and had the catch just manually calculate the computer time if the API call failed (which was what was happening). I was pretty annoyed with the time API being dumb and finnicky, so I just had it display the weather in the same place on the same page. Sorry about that confusion! It should be fixed now.
 
-## 🚀 WebSocket deliverable
+And here is all the DB stuff. It was a pretty smooth switch.
+
+- [x] **Stores data in MongoDB** - I did this! User uploaded decks and user scores get stored into MongoDB. Yay!
+- [x] **Stores credentials in MongoDB** - I did this! Users are stored in MongoDB along with their hashed passwords.
+
+Here is a little sneakpeak into it working. :D
+
+![DB storing data](public/db.jpeg)
+
+
+<!-- ## 🚀 WebSocket deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
