@@ -40,7 +40,7 @@ async function updateUserRemoveAuth(user) {
 }
 
 function getUserDecks(username) {
-  return deckCollection.find({ username: username }).toArray();
+  return deckCollection.find({ owner: username }).toArray();
 }
 
 function getAllDecks() {
@@ -59,4 +59,5 @@ module.exports = {
   updateUserRemoveAuth,
   getUserDecks,
   getAllDecks,
+  addDeck,
 };
