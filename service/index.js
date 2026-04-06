@@ -2,6 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const { WebSocketServer } = require('ws');
+const http = require('http');
 const DB = require('./database.js');
 
 const app = express();
@@ -175,6 +177,20 @@ app.use((req, res) => {
 	res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
+const server = http.createServer(app);
+
+const wss = new WebSocketServer({ server });
+
+wss.on('connection', (ws) => {
+	ws.on('message', (data) => {
+		const msg = String.fromCharCode(...data);
+		console.log('received: %s', msg);
+		ws.send(`I heard you say "${msg}"`);
+	});
+
+	ws.send('Hello webSocket');
+});
+
+server.listen(port, () => {
 	console.log('Backend listening on port ' + port);
 });
