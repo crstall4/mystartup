@@ -117,3 +117,7 @@ Post a score:
 
 Read Scores:
 ```curl -X GET http://localhost:4000/api/scores -b cookies.txt```
+
+## Websocket
+
+Don't forget to install the 'ws' package!
