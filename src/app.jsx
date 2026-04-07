@@ -12,6 +12,28 @@ export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
   const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '["Andrew", "Michael", "Carter", "Jeffery", "Jacob", "Clayton"]'));
   const [decks, setDecks] = React.useState(JSON.parse(localStorage.getItem('decks') || '[]'));
+  const socketRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (username) {
+      const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+      const socket = new WebSocket(`${protocol}://${window.location.host}`);
+      socketRef.current = socket;
+
+      socket.onopen = () => {
+        console.log('WebSocket connected');
+      };
+
+      socket.onclose = () => {
+        console.log('WebSocket disconnected');
+      };
+    } else {
+      if (socketRef.current) {
+        socketRef.current.close();
+        socketRef.current = null;
+      }
+    }
+  }, [username]);
 
   async function refreshDecksFromBackend() {
     const response = await fetch('/api/decks', {
