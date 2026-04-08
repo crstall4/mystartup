@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Login } from './login/login';
 import { Study } from './study/study';
 import { Friends } from './friends/friends';
@@ -112,6 +112,7 @@ export default function App() {
         </menu>   
       </nav>
     </header>
+    <StatusReporter socketRef={socketRef} username={username} />
     <Routes>
       <Route path='/' element={<Login setUsername={handleSetUsername} username={username} refreshDecksFromBackend={refreshDecksFromBackend} />} exact />
       <Route path='/study/:studyTarget' element={<Study user={username} setScore={handleSetScore} decks={decks} />} />
@@ -128,6 +129,31 @@ export default function App() {
   </div>
   </BrowserRouter>
   );
+}
+
+function StatusReporter({ socketRef, username }) {
+  const location = useLocation();
+
+  React.useEffect(() => {
+    const socket = socketRef.current;
+    if (!socket || socket.readyState !== WebSocket.OPEN || !username) return;
+
+    const pathToStatus = {
+      '/': 'On Login Page',
+      '/friends': 'On Friends Page',
+      '/browse': 'On Browse Page',
+      '/stats': 'On Stats Page',
+    };
+
+    const status = location.pathname.startsWith('/study')
+      ? 'On Study Page'
+      : (pathToStatus[location.pathname] || 'Online');
+
+    socket.send(JSON.stringify({ type: 'status', username, status }));
+    console.log(`Sent status: ${status}`);
+  }, [location]);
+
+  return null;
 }
 
 function NotFound() {
