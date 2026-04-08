@@ -147,3 +147,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Data sent over WebSocket connection** - Status messages are sent over the websocket connection: `{ type: 'status', username, status }`. This happens automatically whenever the user navigates to a new page, this happens in the StatusReporter function in app.jsx
 - [x] **WebSocket data displayed** - The Friends page displays the real-time status of each friend. See this change live at friends.jsx
 - [x] **Application is fully functional** - Users can add friends by username, see their real-time page status update live without refreshing, and see them go Offline when they click the 'logout' button.
+
+How to see the webhooks in action (for TAs)
+
+1. Open two browser tabs and go to the app in both
+2. Create two separate accounts (or log into two you already have), one per tab
+3. In tab 1, go to the Friends page and type the username of tab 2's account, then click Add
+4. Now navigate around in tab 2 (click Study, Browse, etc)
+5. Watch tab 1's Friends page, it will update in real time showing what page tab 2 is on
+6. Click the `Logout` button on tab 2, tab 1 will immediately show that friend as Offline
+
