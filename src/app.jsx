@@ -13,6 +13,7 @@ export default function App() {
   const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '["Andrew", "Michael", "Carter", "Jeffery", "Jacob", "Clayton"]'));
   const [decks, setDecks] = React.useState(JSON.parse(localStorage.getItem('decks') || '[]'));
   const socketRef = React.useRef(null);
+  const [statuses, setStatuses] = React.useState({});
 
   React.useEffect(() => {
     if (username) {
@@ -31,7 +32,9 @@ export default function App() {
 
       socket.onmessage = async (msg) => {
         const event = JSON.parse(await msg.data.text());
-        console.log('received:', event);
+        if (event.type === 'status') {
+          setStatuses(prev => ({ ...prev, [event.username]: event.status }));
+        }
       };
     } else {
       if (socketRef.current) {
@@ -121,7 +124,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<Login setUsername={handleSetUsername} username={username} refreshDecksFromBackend={refreshDecksFromBackend} />} exact />
       <Route path='/study/:studyTarget' element={<Study user={username} setScore={handleSetScore} decks={decks} />} />
-      <Route path='/friends' element={<Friends user={username} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend}/>} />
+      <Route path='/friends' element={<Friends user={username} friends={friends} addFriend={handleAddFriend} removeFriend={handleRemoveFriend} statuses={statuses}/>} />
       <Route path='/browse' element={<Browse user={username} decks={decks} setDecks={setDecks} refreshDecksFromBackend={refreshDecksFromBackend} />} />
       <Route path='/stats' element={<Stats user={username}/>} />
       <Route path='*' element={<NotFound />} />
