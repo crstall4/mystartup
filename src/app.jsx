@@ -10,7 +10,7 @@ import { Stats } from './stats/stats';
 
 export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('user') || '');
-  const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '["Andrew", "Michael", "Carter", "Jeffery", "Jacob", "Clayton"]'));
+  const [friends, setFriends] = React.useState(JSON.parse(localStorage.getItem('friends') || '[]'));
   const [decks, setDecks] = React.useState(JSON.parse(localStorage.getItem('decks') || '[]'));
   const socketRef = React.useRef(null);
   const [statuses, setStatuses] = React.useState({});
