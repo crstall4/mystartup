@@ -28,6 +28,11 @@ export default function App() {
       socket.onclose = () => {
         console.log('WebSocket disconnected');
       };
+
+      socket.onmessage = async (msg) => {
+        const event = JSON.parse(await msg.data.text());
+        console.log('received:', event);
+      };
     } else {
       if (socketRef.current) {
         socketRef.current.close();
