@@ -24,6 +24,7 @@ export default function App() {
       socket.onopen = () => {
         console.log('WebSocket connected');
         socket.send(JSON.stringify({ type: 'username', username }));
+        socket.send(JSON.stringify({ type: 'status', username, status: 'Online' }));
       };
 
       socket.onclose = () => {

@@ -26,6 +26,22 @@ function peerProxy(httpServer) {
       });
     });
 
+    // When a socket disconnects, broadcast that user as Offline
+    socket.on('close', () => {
+      const entry = [...connections.entries()].find(([, s]) => s === socket);
+      if (entry) {
+        const [username] = entry;
+        connections.delete(username);
+        const offlineMsg = JSON.stringify({ type: 'status', username, status: 'Offline' });
+        socketServer.clients.forEach((client) => {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(offlineMsg);
+          }
+        });
+        console.log(`User disconnected: ${username}`);
+      }
+    });
+
     // Respond to pong messages by marking the connection alive
     socket.on('pong', () => {
       socket.isAlive = true;
