@@ -92,6 +92,11 @@ export default function App() {
   }
 
   function handleLogout() {
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify({ type: 'status', username, status: 'Offline' }));
+      socketRef.current.close();
+      socketRef.current = null;
+    }
     setUsername('');
     localStorage.removeItem('user');
     setDecks([]);
