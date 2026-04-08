@@ -19,6 +19,7 @@ export default function App() {
     if (username) {
       const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
       const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+      // THIS IS WHERE THE WEBSOCKET CONNECTION IS OPENED. (happens on login)
       socketRef.current = socket;
 
       socket.onopen = () => {
@@ -157,7 +158,7 @@ function StatusReporter({ socketRef, username }) {
     const status = location.pathname.startsWith('/study')
       ? 'On Study Page'
       : (pathToStatus[location.pathname] || 'Online');
-
+    //This is where data is sent over WebSocket connection
     socket.send(JSON.stringify({ type: 'status', username, status }));
     console.log(`Sent status: ${status}`);
   }, [location]);

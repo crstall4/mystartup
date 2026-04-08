@@ -138,12 +138,12 @@ Here is a little sneakpeak into it working. :D
 ![DB storing data](public/db.jpeg)
 
 
-<!-- ## 🚀 WebSocket deliverable
+## 🚀 WebSocket deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable. -->
+- [x] **Backend listens for WebSocket connection** - The backend uses the ws package to create a WebSocket server attached to the same HTTP server as Express. See all this handled in peerProxy.js
+- [x] **Frontend makes WebSocket connection** - When a user logs in, app.jsx opens a WebSocket connection. 
+- [x] **Data sent over WebSocket connection** - Status messages are sent over the websocket connection: `{ type: 'status', username, status }`. This happens automatically whenever the user navigates to a new page, this happens in the StatusReporter function in app.jsx
+- [x] **WebSocket data displayed** - The Friends page displays the real-time status of each friend. See this change live at friends.jsx
+- [x] **Application is fully functional** - Users can add friends by username, see their real-time page status update live without refreshing, and see them go Offline when they log out.
