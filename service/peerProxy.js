@@ -3,12 +3,22 @@ const { WebSocketServer, WebSocket } = require('ws');
 function peerProxy(httpServer) {
   // Create a websocket object
   const socketServer = new WebSocketServer({ server: httpServer });
+  const connections = new Map();
 
   socketServer.on('connection', (socket) => {
     socket.isAlive = true;
 
-    // Forward messages to everyone except the sender
     socket.on('message', function message(data) {
+      const msg = JSON.parse(data);
+
+      // Store the socket under the user's username
+      if (msg.type === 'username') {
+        connections.set(msg.username, socket);
+        console.log(`User connected: ${msg.username}`);
+        return;
+      }
+
+      // Forward all other messages to everyone except the sender
       socketServer.clients.forEach((client) => {
         if (client !== socket && client.readyState === WebSocket.OPEN) {
           client.send(data);
